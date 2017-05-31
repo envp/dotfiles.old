@@ -11,6 +11,7 @@ call plug#begin('~/.vim/vimplug')
     Plug 'airblade/vim-gitgutter'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-syntastic/syntastic'
+    Plug 'craigemery/vim-autotag'
 call plug#end()
 
 
@@ -61,7 +62,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Show the status bar and line numbers
 set laststatus=2
 set number
-
+set noswapfile
 set background=dark
 set t_Co=16 " added for chromeos crosh chroot ubuntu
 
@@ -94,3 +95,10 @@ map <leader>n :NERDTreeToggle<CR>
 
 "" no need to fold things in markdown all the time
 let g:vim_markdown_folding_disabled = 1
+
+"" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+"
+"" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+

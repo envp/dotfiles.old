@@ -183,3 +183,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Vaibhav Yenamandra
+	email = theyenaman@outlook.com

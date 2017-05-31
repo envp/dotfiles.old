@@ -7,3 +7,5 @@
 # Only autocomplete directories
 complete -d cd
 
+# For GPB-GPU
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/acml5.3.1/ifort64/lib
