@@ -8,1434 +8,326 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~Msle0~/\<jpg\>
+~Msle0~/\<create_finest_partition\>
 
 # Last Substitute Search Pattern:
-~MSle0&\s\+$
+~MSle0&system_clock
 
 # Last Substitute String:
-$
+$steady_clock
 
 # Command Line History (newest to oldest):
-:wq
 :q
+:e src/watershed.cpp
+:wq
 :w
-:e src/kernels/bgr2grey.h
-:e src/kernels/bgr2lab.h
-:e src/kernels/bgr2lab.cu
-:W
-:e src/kernels/bgr2gray.h
-:e src/kernels/bgr2gray.cuh
-:e src/kernels/bgr2gray.cu
-:'<,'>
+:Reading
+:%s/system_clock/steady_clock/g
+:s/system_clock/steady_clock/g
+:e .
 :Q
-:colorscheme solarized
-:colorscheme gruvbox
-:colorscheme 0x7A69_dark
-:colorscheme 1989
-:colorscheme PaperColor
-:colorscheme cake16
-:colorscheme coda
-:colorscheme Monokai
-:colorscheme 256-grayvim
-:colorscheme wombat
-:colorscheme atom
-:colorscheme BlackSea
-:colorscheme Benokai
-:colorscheme
-:colder
-:t
-:e localcues/localcuesmain.cu
-:source $MYVIMRC
-:s $MY_VIMRC
-:e ~/.vimrc
-:TagbarOpen
-:!df -h $HOME
-:!df $HOME
-:.
-:10k
+:e postprocess/skeleton.cu
+:e postprocess/postprocessmain.cu
+:W
 :PlugInstall
-:PlugClean
-:PlugUpdate
-:PlugDiff
-:q!
-:tags
-:TagsGenerate 
-:TagsGenerate!
-:TagsGenerate
-:PlugStatus
-:Plug
-:Print
 :PlugUpgrade
+:PlugDiff
+:PlugUpdate
+:PlugStatus
+:e ~/.vimrc
+:Tagbar
+:!ctags -R example.m
+:tags
+:vim contours2ucm **/*.cpp | copen
 
 # Search String History (newest to oldest):
-? \<dbg\>
-?/dbg
-?/COMMONFLAGS
-? \<nvcc\>
-? \<NVCC\>
-?/nvcc
-? \<cuda_parabola_pixels\>
-?/*
-? \<savgol_filter\>
-?/savgol
-?/q
-?/Changes
-?/gray
-?/rgbTo
-?/bord
-?/sav
-?/filt
-? \<read_parabola_filters\>
-? MY_VIMRC
-?/main
-?/oc
-? \<jpg\>
-? \s\+$
-? \<function\>
-? \<method\>
-?/method
-?/hostGrey
-? \<PS1\>
-?/ps1*
-?/ps1
-? \<x\>
-? \<rows\>
-? x
-?/%s/x/y
-?/%s/x/y/
-?/name
-? /.vimrc
-?/solarisze
-?/solari
-?/pathogen
-?/hidden
-? )
-?/exec
-?/sm_10
-?/quanti
-?/display
-?/cpubitmap
-?/CPUBit
-?/rsz
+? \<create_finest_partition\>
+? \<bwlabel\>
+?/bwlabel
+? \<minMaxLoc\>
+? \<watershed_yupeng\>
+?/watershed
+?/cont
+?/Reading
+? system_clock
+?/:%s/system_clock/steady_clock/g
+?/Readin
+?/chrono
+? \<Reading\>
+?/Reading 
 ?/globalPb
+? \<watershed\>
+? \<clean_watersheds\>
+? \<super_contour_4c\>
+?/c
+? \<normalizeSigmoid\>
+? \<mask\>
+? \<normalizewrtmpb\>
+? \<devGPb\>
+?/PostProcess
+? \<PostProcess\>
+?/Post
+?/postprocess
+?/postprc
+?/PosProcess
+?/hostgpb
+?/devgpb
+?/hostGPb
+?/hostHPb
+? \<outputPBfilename\>
+? \<hostGPb\>
+? \<sdkSavePGM\>
+?/sdkSavePGM
+? \<__savePPM\>
+?/convertertoubyte
+? \<ConverterToUByte\>
+?/ConverterToUByte
+?/savePGM
+?/__savePPM
+?/contours
+?/generateUCM2
+? \<generateUCM2\>
+? \<ucm\>
+? \<generateBdryAtScaleK\>
 
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
-@y
-@N
-@/cise/homes/vyenaman/projects/gpbcuda/src/kernels/bgr2gray.cu
-@/cise/homes/vyenaman/projects/gpbcuda/globalPb.h
-@/cise/homes/vyenaman/projects/gpbcuda/globalPb.cu
-@/cise/homes/vyenaman/projects/gpbcuda/globalPb.cpp
 
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	#ifndef GLOBALPB_SRC_KERNELS_BGR2LAB_H
-""1	LINE	0
-	.bash_history
+""0	LINE	0
+		vector<coordinates> XY_A;
+"1	LINE	0
+	            chrono::
 "2	LINE	0
-	{
+		% create finest partition and transfer contour strength
+		[ws_wt] = create_finest_partition(pb_oriented);
 "3	LINE	0
-	
+	   */
 "4	LINE	0
-	#include "kernels/bgr2grey.h"
+	  /*
 "5	LINE	0
-	#include <typeinfo>
+	
 "6	LINE	0
-	#include <opencv2/gpu/gpumat.hpp>
+	
 "7	LINE	0
-	#include <opencv2/gpu/gpu.hpp>
+	  FILE* gpbFile;
+	  
+	  float* hostGPb = (float*)malloc(sizeof(float)*nPixels);
+	  cudaMemcpy(hostGPb, devGPb, sizeof(float)*nPixels, cudaMemcpyDeviceToHost);
+	  gpbFile = fopen("devGpb_before_PostProcess.txt", "w");
+	  for(int i = 0; i < nPixels; ++i) 
+	  {
+	    /*
+	     *fprintf(gpbFile, "%f, %d\n", hostGPb[i], (unsigned short) (255 * hostGPb[i]));
+	     */
+	    fprintf(gpbFile, "%f\n", hostGPb[i]);
+	  }
+	  fclose(gpbFile);
 "8	LINE	0
-	    imwrite( argv[2], outImg);
-"9	LINE	0
-	    Mat outImg;
-"-	CHAR	0
 	{
+"9	LINE	0
+	
+"b	CHAR	0
+	,
+"-	CHAR	0
+	\
 
 # File marks:
-'0  23  0  ~/.files
-'1  1  0  ~/backup_dotfiles
-'2  16  0  ~/backup_dotfiles
-'3  27  12  ~/dotfiles/.gitignore
-'4  136  13  ~/projects/gpbcuda/globalPb.cu
-'5  199  9  ~/projects/gpbcuda/globalPb.cu
-'6  16  0  ~/projects/gpbcuda/globalPb.cu
-'7  13  32  ~/.vimrc
-'8  190  102  ~/projects/gpbcuda/globalPb.cu
-'9  190  125  ~/projects/gpbcuda/globalPb.cu
+'0  1  0  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+'1  520  11  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+'2  687  103  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+'3  359  12  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
+'4  1  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+'5  1  0  ~/.tmuxrc
+'6  1  0  .
+'7  54  5  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+'8  1  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+'9  27  20  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
 
 # Jumplist (newest first):
--'  23  0  ~/.files
--'  1  0  ~/.files
--'  1  0  ~/backup_dotfiles
--'  16  0  ~/backup_dotfiles
--'  27  12  ~/dotfiles/.gitignore
--'  1  0  ~/dotfiles/.gitignore
--'  136  13  ~/projects/gpbcuda/globalPb.cu
--'  6  41  ~/projects/gpbcuda/src/kernels/bgr2grey.h
--'  39  0  ~/projects/gpbcuda/globalPb.cu
--'  2  6  ~/projects/gpbcuda/src/kernels/bgr2lab.h
--'  7  0  ~/projects/gpbcuda/src/kernels/bgr2lab.cu
--'  6  0  ~/projects/gpbcuda/src/kernels/bgr2gray.h
--'  5  0  ~/projects/gpbcuda/src/kernels/bgr2gray.h
--'  1  7  ~/projects/gpbcuda/src/kernels/bgr2gray.h
--'  14  0  ~/projects/gpbcuda/globalPb.cu
--'  12  0  ~/projects/gpbcuda/globalPb.cu
--'  1  16  ~/projects/gpbcuda/src/kernels/bgr2gray.cu
--'  11  0  ~/projects/gpbcuda/globalPb.cu
--'  16  21  ~/projects/gpbcuda/globalPb.cu
--'  181  6  ~/projects/gpbcuda/globalPb.cu
--'  13  0  ~/projects/gpbcuda/NERD_tree_1
--'  1  0  ~/projects/gpbcuda/NERD_tree_1
--'  19  2  ~/projects/gpbcuda/NERD_tree_1
--'  199  9  ~/projects/gpbcuda/globalPb.cu
--'  196  4  ~/projects/gpbcuda/globalPb.cu
--'  3  4  ~/projects/gpbcuda/globalPb.cu
--'  13  7  ~/projects/gpbcuda/.gitignore
--'  173  32  ~/projects/gpbcuda/globalPb.cu
--'  45  0  ~/projects/gpbcuda/globalPb.cu
--'  180  4  ~/projects/gpbcuda/globalPb.cu
--'  118  4  ~/projects/gpbcuda/globalPb.cu
--'  100  8  ~/projects/gpbcuda/globalPb.cu
--'  91  0  ~/projects/gpbcuda/globalPb.cu
--'  76  3  ~/projects/gpbcuda/globalPb.cu
--'  147  33  ~/projects/gpbcuda/globalPb.cu
--'  13  58  ~/projects/gpbcuda/globalPb.cu
--'  41  58  ~/projects/gpbcuda/globalPb.cu
--'  202  31  ~/projects/gpbcuda/globalPb.cu
--'  200  0  ~/projects/gpbcuda/globalPb.cu
--'  207  4  ~/projects/gpbcuda/globalPb.cu
--'  171  32  ~/projects/gpbcuda/globalPb.cu
--'  141  60  ~/projects/gpbcuda/globalPb.cu
--'  140  7  ~/projects/gpbcuda/globalPb.cu
--'  143  4  ~/projects/gpbcuda/globalPb.cu
--'  189  0  ~/projects/gpbcuda/globalPb.cu
--'  31  0  ~/projects/gpbcuda/NERD_tree_1
--'  36  2  ~/projects/gpbcuda/NERD_tree_1
--'  48  0  ~/projects/gpbcuda/NERD_tree_1
--'  53  2  ~/projects/gpbcuda/NERD_tree_1
--'  13  32  ~/.vimrc
--'  33  43  ~/projects/gpbcuda/globalPb.cu
--'  29  30  ~/projects/gpbcuda/globalPb.cu
--'  15  0  ~/projects/gpbcuda/globalPb.cu
--'  17  0  ~/projects/gpbcuda/globalPb.cu
--'  18  4  ~/projects/gpbcuda/globalPb.cu
--'  19  4  ~/projects/gpbcuda/globalPb.cu
--'  20  4  ~/projects/gpbcuda/globalPb.cu
--'  21  4  ~/projects/gpbcuda/globalPb.cu
--'  27  0  ~/projects/gpbcuda/globalPb.cu
--'  30  0  ~/projects/gpbcuda/globalPb.cu
--'  31  8  ~/projects/gpbcuda/globalPb.cu
--'  32  8  ~/projects/gpbcuda/globalPb.cu
--'  34  8  ~/projects/gpbcuda/globalPb.cu
--'  35  0  ~/projects/gpbcuda/globalPb.cu
--'  36  8  ~/projects/gpbcuda/globalPb.cu
--'  37  4  ~/projects/gpbcuda/globalPb.cu
--'  9  18  ~/projects/gpbcuda/globalPb.cu
--'  193  0  ~/projects/gpbcuda/globalPb.cu
--'  191  4  ~/projects/gpbcuda/globalPb.cu
--'  2  4  ~/projects/gpbcuda/globalPb.cu
--'  13  32  ~/.vimrc
--'  472  0  ~/tech/install-clang/install-clang
--'  1  0  ~/tech/install-clang/install-clang
--'  15  25  ~/backup_dotfiles
--'  21  0  ~/.files
--'  5  5  ~/backup_dotfiles
--'  7  31  ~/backup_dotfiles
--'  1  14  ~/backup_dotfiles.sh
--'  14  0  ~/backup_dotfiles.sh
--'  6  3  ~/backup_dotfiles.sh
--'  5  2  ~/.gitignore
--'  1  0  ~/.gitignore
--'  88  30  ~/.bash_prompt
--'  1  0  ~/.bash_prompt
--'  65  41  ~/projects/bin/activate
--'  1  0  ~/projects/bin/activate
--'  87  6  ~/.bash_prompt
--'  91  0  ~/.bash_prompt
--'  90  0  ~/.bash_prompt
--'  20  36  ~/.aliases
--'  1  0  ~/.aliases
--'  83  0  ~/.bash_prompt
--'  98  0  ~/.bash_prompt
--'  94  18  ~/.bash_prompt
--'  84  27  ~/.bash_prompt
--'  59  0  ~/.bash_prompt
--'  58  17  ~/projects/bin/activate
--'  51  43  ~/.bash_profile
+-'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/example.m
+-'  15  0  ~/projects/bsr/NERD_tree_1
+-'  62  2  ~/projects/bsr/NERD_tree_1
+-'  1  0  ~/projects/bsr/NERD_tree_1
+-'  520  11  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  316  4  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  507  25  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  120  44  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  107  17  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  538  19  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  423  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  85  0  ~/projects/UCMMPI-Spectra/src/watershed.cpp
+-'  348  12  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  23  1  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  336  1  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  88  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  1  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  12  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  1  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  45  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  687  103  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  686  154  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  437  2  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  683  8  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  685  68  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  436  120  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  27  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  679  16  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  430  12  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  1  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+-'  90  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  120  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  359  12  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
+-'  1  0  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
+-'  1  0  ~/.tmuxrc
+-'  1  0  .
+-'  54  5  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  51  19  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  27  15  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  31  19  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  30  20  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+-'  11  16  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+-'  7  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+-'  56  2  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+-'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+-'  64  2  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+-'  73  8  ~/projects/bsr/NERD_tree_1
+-'  69  0  ~/projects/bsr/NERD_tree_1
+-'  120  2  ~/projects/bsr/NERD_tree_1
+-'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
+-'  501  4  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+-'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  164  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  194  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
+-'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
+-'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
+-'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
+-'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+-'  66  2  ~/projects/bsr/NERD_tree_1
+-'  521  0  ~/projects/gpb-gpu/damascene/damascene.cu
+-'  79  16  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  181  4  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  180  13  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  184  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  169  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  153  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
 
 # History of marks within files (newest to oldest):
 
-> ~/.files
-	"	23	0
-	.	24	0
-	+	7	0
-	+	9	0
-	+	11	0
-	+	16	0
-	+	18	0
-	+	18	0
-	+	21	0
-	+	21	0
-	+	7	0
-	+	10	0
-	+	13	0
-	+	18	0
-	+	19	0
-	+	20	0
-	+	21	0
-	+	23	0
-	+	24	0
+> ~/projects/bsr/NERD_tree_1
+	"	15	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
 
-> ~/backup_dotfiles
+> ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
 	"	1	0
-	^	15	26
-	.	15	24
-	+	5	13
-	+	16	13
-	+	7	31
-	+	5	5
-	+	10	0
-	+	12	23
-	+	11	17
-	+	15	24
 
-> ~/dotfiles/.gitignore
-	"	27	12
-	^	27	13
-	.	27	12
-	+	27	12
-
-> ~/projects/gpbcuda/NERD_tree_1
+> ~/projects/bsr/NERD_tree_2
 	"	13	0
 	.	1	0
 	+	1	0
 	+	1	0
 	+	1	0
 	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
 
-> ~/projects/gpbcuda/globalPb.cu
-	"	136	13
-	^	136	14
-	.	136	14
-	+	85	70
-	+	84	70
-	+	115	39
-	+	116	39
-	+	117	39
-	+	108	13
-	+	45	0
-	+	46	62
-	+	173	32
-	+	51	9
-	+	52	9
-	+	19	9
-	+	21	9
-	+	145	0
-	+	144	101
-	+	160	35
-	+	161	35
-	+	162	35
-	+	163	36
-	+	164	35
-	+	160	43
-	+	120	10
-	+	121	97
-	+	122	1
-	+	123	20
-	+	124	57
-	+	125	58
-	+	127	36
-	+	128	5
-	+	130	0
-	+	129	14
-	+	127	0
-	+	130	5
-	+	137	0
-	+	141	7
-	+	181	16
-	+	197	7
-	+	199	22
-	+	199	0
-	+	191	0
-	+	191	0
-	+	194	0
-	+	195	0
-	+	199	31
-	+	181	18
-	+	3	28
-	+	181	42
-	+	199	32
-	+	181	1
-	+	181	41
-	+	3	0
-	+	3	29
-	+	121	4
-	+	196	0
-	+	195	0
-	+	196	0
-	+	195	6
-	+	196	6
-	+	206	6
-	+	194	14
-	+	199	25
-	+	3	31
-	+	181	4
-	+	181	0
-	+	181	33
-	+	181	0
-	+	181	28
-	+	181	56
-	+	181	30
-	+	181	0
-	+	181	0
-	+	181	0
-	+	181	0
-	+	200	0
-	+	206	4
-	+	197	0
-	+	199	0
-	+	196	3
-	+	195	4
-	+	194	0
-	+	201	35
-	+	197	0
-	+	202	0
-	+	201	43
-	+	141	5
-	+	200	0
-	+	203	0
-	+	205	0
-	+	137	0
-	+	138	0
-	+	3	0
-	+	2	0
-	+	16	0
-	+	16	0
-	+	12	0
-	+	12	0
-	+	8	0
-	+	18	0
-	+	132	45
-	+	136	14
-
-> ~/projects/gpbcuda/src/kernels/bgr2gray.cu
-	"	4	0
-	^	3	0
-	.	3	0
-	+	1	17
-	+	1	17
-	+	1	17
-	+	3	0
-
-> ~/projects/gpbcuda/src/kernels/bgr2gray.cuh
-	"	2	0
-	^	2	0
-	.	2	0
-	+	4	0
-	+	1	0
-	+	3	0
-	+	1	0
-	+	2	89
-	+	2	0
-
-> ~/projects/gpbcuda/src/kernels/bgr2gray.h
-	"	1	7
-	^	6	0
-	.	7	0
-	+	3	0
-	+	1	8
-	+	5	0
-	+	1	36
-	+	2	6
-	+	5	0
-	+	6	0
-	+	7	0
-
-> ~/projects/gpbcuda/src/kernels/bgr2lab.cu
-	"	7	0
-	^	2	0
-	.	2	0
-	+	1	0
-	+	2	0
-	+	1	17
-	+	1	17
-	+	2	0
-
-> ~/projects/gpbcuda/src/kernels/bgr2lab.h
-	"	2	6
-	^	2	7
-	.	2	6
-	+	1	0
-	+	1	10
-	+	1	28
-	+	1	114
-	+	1	145
-	+	5	0
-	+	1	146
-	+	3	0
-	+	1	37
-	+	2	0
-	+	5	0
-	+	6	42
-	+	2	6
-
-> ~/projects/gpbcuda/src/kernels/bgr2grey.h
-	"	6	41
-	^	6	41
-	.	6	40
-	+	1	38
-	+	2	38
-	+	6	40
-
-> ~/projects/gpb-gpu/NERD_tree_1
-	"	23	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/gpb-gpu/localcues/parabola.cu
-	"	58	159
-	^	58	160
-	.	58	160
-	+	58	160
-
-> ~/projects/gpb-gpu/damascene/common.mk
-	"	94	8
-	^	202	24
-	.	240	0
-	+	240	18
-	+	241	0
-	+	240	0
-	+	241	43
-	+	240	0
-
-> ~/projects/gpb-gpu/common.mk
-	"	1	0
-
-> ~/projects/gpb-gpu/localcues/localcues.cu
-	"	63	6
-
-> ~/.bashrc
-	"	11	66
-	^	11	67
-	.	11	67
-	+	2	0
-	+	1	0
-	+	11	67
-
-> ~/projects/gpb-gpu/textons/kmeans.cu
-	"	289	61
-
-> ~/.vimrc
-	"	102	0
-	^	102	1
-	.	102	1
-	+	24	0
-	+	105	33
-	+	105	0
-	+	57	13
-	+	59	13
-	+	61	0
-	+	60	37
-	+	62	0
-	+	47	0
-	+	47	0
-	+	77	7
-	+	78	103
-	+	78	0
-	+	51	0
-	+	2	10
-	+	1	0
-	+	78	0
-	+	82	0
-	+	78	16
-	+	76	10
-	+	77	13
-	+	80	37
-	+	89	0
-	+	83	28
-	+	83	1
-	+	89	0
-	+	87	0
-	+	86	3
-	+	85	4
-	+	87	61
-	+	88	0
-	+	87	41
-	+	105	0
-	+	79	18
-	+	105	17
-	+	105	0
-	+	90	0
-	+	1	0
-	+	69	0
-	+	67	0
-	+	69	2
-	+	35	61
-	+	36	23
-	+	1	2
-	+	2	2
-	+	36	2
-	+	105	0
-	+	105	0
-	+	105	0
-	+	2	0
-	+	1	0
-	+	36	0
-	+	16	0
-	+	4	28
-	+	15	14
-	+	5	24
-	+	6	30
-	+	6	30
-	+	8	24
-	+	9	24
-	+	6	3
-	+	8	3
-	+	9	28
-	+	11	10
-	+	10	34
-	+	11	33
-	+	15	10
-	+	21	13
-	+	15	0
-	+	7	8
-	+	69	18
-	+	12	9
-	+	70	0
-	+	69	20
-	+	12	4
-	+	12	43
-	+	12	43
-	+	26	18
-	+	25	23
-	+	26	0
-	+	26	19
-	+	27	0
-	+	27	22
-	+	30	0
-	+	31	0
-	+	33	0
-	+	30	21
-	+	33	22
-	+	27	0
-	+	13	34
-	+	15	0
-	+	16	0
-	+	15	0
-	+	65	13
-	+	99	28
-	+	103	49
-	+	100	0
-	+	103	0
-	+	99	0
-	+	102	1
-
-> ~/projects/gpb-gpu/localcues/localcuesmain.cu
-	"	64	10
-
-> ~/projects/gpb-gpu/textons/texton.64.cu
-	"	116	4
-
-> ~/projects/gpb-gpu/textons/kmeans.64.cu
-	"	63	1
-
-> ~/projects/gpb-gpu/gPb/gpbmain.cu
-	"	161	0
-	^	161	1
-	.	161	1
-	+	159	3
-	+	160	1
-	+	161	1
-
-> ~/projects/gpb-gpu/gPb/globalPb.cu
-	"	103	6
-
-> ~/projects/bsr/BSR/NERD_tree_1
-	"	12	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/bsr/BSR/bench/source/correspondPixels.cc
-	"	56	0
-	.	63	0
-	+	8	0
-	+	7	0
-	+	63	0
-
-> ~/projects/bsr/BSR/bench/source/match.cc
-	"	335	16
-
-> ~/projects/bsr/BSR/bench/source/build.m
-	"	1	0
-
-> ~/projects/bsr/BSR/bench/source/correspondPixels.
-	"	1	0
-
-> ~/projects/gpbcuda/src/NERD_tree_1
-	"	7	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/gpbcuda/.gitignore
-	"	13	7
-	^	13	8
-	.	13	7
-	+	10	7
-	+	13	10
-	+	17	3
-	+	13	7
-
-> ~/tech/install-clang/install-clang
-	"	472	0
-
-> ~/backup_dotfiles.sh
-	"	1	14
-	^	1	15
-	.	1	14
-	+	1	15
-	+	6	65
-	+	9	2
-	+	6	3
-	+	9	3
-	+	2	0
-	+	7	85
-	+	9	0
-	+	7	111
-	+	8	10
-	+	11	0
-	+	5	5
-	+	4	48
-	+	11	16
-	+	12	11
-	+	13	17
-	+	1	14
-
-> ~/.gitignore
-	"	5	2
-	^	5	3
-	.	5	3
-	+	1	20
-	+	5	3
-
-> ~/.bash_prompt
-	"	88	30
-	^	88	31
-	.	88	30
-	+	195	11
-	+	100	11
-	+	95	34
-	+	91	0
-	+	84	27
-	+	91	27
-	+	91	27
-	+	92	27
-	+	91	30
-	+	93	30
-	+	94	27
-	+	84	0
-	+	91	0
-	+	84	0
-	+	95	0
-	+	94	18
-	+	91	0
-	+	84	0
-	+	98	0
-	+	91	0
-	+	84	0
-	+	91	25
-	+	91	0
-	+	91	29
-	+	84	31
-	+	91	31
-	+	91	31
-	+	91	31
-	+	92	31
-	+	93	31
-	+	94	31
-	+	91	48
-	+	91	23
-	+	91	0
-	+	85	0
-	+	85	0
-	+	91	0
-	+	86	0
-	+	88	40
-	+	87	6
-	+	88	30
-
-> ~/projects/bin/activate
-	"	65	41
-
-> ~/.aliases
-	"	20	36
-	^	21	70
-	.	21	69
-	+	82	35
-	+	16	0
-	+	21	44
-	+	20	36
-	+	21	69
-
-> ~/.bash_profile
-	"	51	43
-	^	51	44
-	.	51	43
-	+	53	0
-	+	49	41
-	+	50	36
-	+	52	2
-	+	50	47
-	+	51	43
-
-> ~/projects/.bash_profile
-	"	1	0
-
-> ~/.bash_pro
-	"	1	0
-
-> ~/tech/virtualenv.py
-	"	1	21
-	^	1	22
-	.	1	21
-	+	1	21
-
-> ~/projects/gpbcuda/README.md
-	"	1	108
-	^	1	109
-	.	1	108
-	+	1	108
-
-> ~/projects/gpbcuda/.git/COMMIT_EDITMSG
-	"	1	65
-	^	1	66
-	.	1	66
-	+	1	66
-
-> ~/.functions
-	"	3	0
-	.	2	0
-	+	2	0
-	+	2	14
-	+	2	37
-	+	2	10
-	+	2	16
-	+	2	39
-	+	2	35
-	+	2	54
-	+	2	40
-	+	2	0
-
-> ~/projects/gpbcuda/NERD_tree_2
-	"	4	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/gpbcuda/globalPb.h
-	"	4	84
-	^	4	85
-	.	4	84
-	+	1	18
-	+	9	8
-	+	6	6
-	+	2	17
-	+	6	19
-	+	3	0
-	+	5	37
-	+	4	0
-	+	5	0
-	+	4	84
-
-> ~/projects/gpbcuda/m.
-	"	1	0
-
-> /usr/share/vim/vim74/doc/help.txt
-	"	1	0
-
-> ~/projects/gpbcuda/CMakeLists.txt
-	"	19	13
-	^	16	14
-	.	16	13
-	+	1	11
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	48
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	28
-	+	1	1
-	+	1	0
-	+	1	25
-	+	1	27
-	+	1	0
-	+	1	7
-	+	1	22
-	+	1	21
-	+	1	22
-	+	1	21
-	+	1	0
-	+	1	0
-	+	1	16
-	+	1	28
-	+	1	1
-	+	1	0
-	+	1	58
-	+	1	15
-	+	1	41
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	2
-	+	1	41
-	+	1	4
-	+	1	21
-	+	1	24
-	+	1	0
-	+	1	0
-	+	1	3
-	+	1	30
-	+	1	42
-	+	1	54
-	+	1	48
-	+	1	0
-	+	1	16
-	+	1	37
-	+	1	34
-	+	1	22
-	+	1	4
-	+	1	0
-	+	1	0
-	+	1	15
-	+	1	0
-	+	1	21
-	+	1	11
-	+	1	9
-	+	1	35
-	+	18	51
-	+	2	15
-	+	5	27
-	+	18	29
-	+	3	0
-	+	5	29
-	+	5	29
-	+	6	0
-	+	4	17
-	+	4	35
-	+	4	6
-	+	4	30
-	+	4	26
-	+	4	35
-	+	4	0
-	+	4	1
-	+	4	17
-	+	4	38
-	+	18	0
-	+	20	19
-	+	22	0
-	+	21	19
-	+	4	0
-	+	1	0
-	+	18	0
-	+	13	4
-	+	7	4
-	+	8	4
-	+	11	0
-	+	9	22
-	+	10	16
-	+	18	0
-	+	15	16
-	+	17	0
-	+	14	0
-	+	10	0
-	+	16	13
-
-> ~/projects/gpbcuda/globalPb.cpp
-	"	6	0
-	^	6	37
-	.	6	35
-	+	11	0
-	+	5	25
-	+	6	35
-
-> ~/projects/gpbcuda/main.cpp
-	"	8	0
-	^	19	50
-	.	5	0
-	+	1	18
-	+	28	1
-	+	29	0
-	+	46	0
-	+	29	3
-	+	46	4
-	+	29	24
-	+	1	0
-	+	1	20
-	+	29	11
-	+	29	28
-	+	29	28
-	+	46	0
-	+	1	8
-	+	29	4
-	+	22	10
-	+	1	9
-	+	22	27
-	+	27	29
-	+	29	19
-	+	31	5
-	+	33	0
-	+	32	14
-	+	29	13
-	+	32	36
-	+	45	0
-	+	30	0
-	+	29	11
-	+	45	3
-	+	35	4
-	+	1	0
-	+	34	0
-	+	35	3
-	+	34	7
-	+	35	7
-	+	34	0
-	+	36	34
-	+	38	22
-	+	39	5
-	+	42	0
-	+	40	7
-	+	38	8
-	+	40	0
-	+	41	0
-	+	40	49
-	+	44	18
-	+	30	16
-	+	44	28
-	+	32	14
-	+	23	0
-	+	25	19
-	+	1	19
-	+	2	29
-	+	10	31
-	+	11	1
-	+	12	19
-	+	13	5
-	+	16	0
-	+	14	21
-	+	15	16
-	+	14	66
-	+	18	0
-	+	14	77
-	+	18	3
-	+	7	20
-	+	8	18
-	+	18	38
-	+	19	18
-	+	19	27
-	+	3	30
-	+	3	30
-	+	19	14
-	+	19	14
-	+	20	0
-	+	19	4
-	+	20	3
-	+	2	0
-	+	3	47
-	+	20	28
-	+	3	30
-	+	4	0
-	+	5	0
-	+	19	27
-	+	5	32
-	+	19	49
-	+	5	0
-
-> ~/projects/gpbcuda/src/kernels/filters.cu
-	"	4	10
-	^	4	11
-	.	4	10
-	+	1	25
-	+	2	37
-	+	5	1
-	+	7	40
-	+	9	26
-	+	4	10
-
-> kernels/filters.cu
-	"	10	26
-	^	10	27
-	.	10	26
-	+	1	25
-	+	2	36
-	+	6	1
-	+	7	24
-	+	8	56
-	+	8	40
-	+	10	26
-
-> ~/projects/cuda/cuda_by_example/chapter04/julia_gpu.cu
-	"	9	0
-	.	26	0
-	+	1	0
-	+	22	0
-	+	25	14
-	+	91	6
-	+	26	4
-	+	26	0
-
-> ~/projects/cuda/cuda_by_example/common/book.h
-	"	68	0
-
-> ~/projects/gpbcuda/NERD_tree_3
-	"	19	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/cuda/simpleDeviceQuery.cu
-	"	1	0
-
-> kernels/rgbToGreyScale.cu
-	"	1	0
-
-> ~/projects/gpbcuda/clean_build
-	"	5	58
-	^	5	59
-	.	5	58
-	+	8	0
-	+	7	17
-	+	3	24
-	+	4	0
-	+	3	0
-	+	5	37
-	+	6	0
-	+	5	37
-	+	5	44
-	+	4	5
-	+	5	6
-	+	7	0
-	+	5	58
-
-> ~/projects/gpbcuda/src/CMakeLists.txt
-	"	2	30
-	^	2	31
-	.	2	31
-	+	2	159
-	+	1	5
-	+	2	64
-	+	2	62
-	+	2	64
-	+	3	0
-	+	2	90
-	+	2	31
-
-> ~/projects/UCMMPI-Spectra/CMakeLists.txt
-	"	1	0
-	^	536	0
-	.	536	0
-	+	1274	1
-	+	1275	1
-	+	1276	1
-	+	1277	1
-	+	1278	1
-	+	1279	1
-	+	1280	1
-	+	1281	1
-	+	1283	1
-	+	1282	1
-	+	1284	1
-	+	1285	1
-	+	1286	1
-	+	1287	1
-	+	1288	1
-	+	1220	0
-	+	1248	0
-	+	1289	1
-	+	1290	1
-	+	1292	0
-	+	1293	1
-	+	1294	1
-	+	1295	1
-	+	1296	1
-	+	1297	1
-	+	1298	1
-	+	1299	1
-	+	1300	1
-	+	1301	1
-	+	1302	1
-	+	1303	1
-	+	1304	1
-	+	1305	1
-	+	1306	1
-	+	1308	1
-	+	1307	1
-	+	1309	1
-	+	1310	1
-	+	1311	1
-	+	1312	1
-	+	1314	1
-	+	1315	1
-	+	1316	1
-	+	1317	1
-	+	1318	1
-	+	1319	1
-	+	1320	1
-	+	1321	1
-	+	1322	1
-	+	1323	1
-	+	1324	1
-	+	1325	1
-	+	1326	1
-	+	1327	1
-	+	1328	1
-	+	1329	1
-	+	1330	1
-	+	1331	1
-	+	1332	1
-	+	1313	0
-	+	1333	1
-	+	1334	1
-	+	1335	1
-	+	1336	1
-	+	1338	1
-	+	1337	1
-	+	1339	1
-	+	1340	1
-	+	1341	1
-	+	1342	1
-	+	1343	1
-	+	1344	1
-	+	1345	1
-	+	1346	1
-	+	1347	1
-	+	1348	1
-	+	1351	1
-	+	1352	1
-	+	1353	1
-	+	1354	1
-	+	1355	1
-	+	1356	1
-	+	1357	1
-	+	1358	1
-	+	1359	1
-	+	1360	1
-	+	1361	1
-	+	1362	1
-	+	1363	1
-	+	1364	1
-	+	1365	0
-	+	1070	984
-	+	532	984
-	+	540	88
-	+	538	0
-	+	537	0
-	+	536	88
-	+	534	0
-	+	534	45
-	+	536	0
-
-> ~/tech/damascene/include/stencilMVM.h
-	"	3	21
-	^	3	22
-	.	3	21
-	+	2	20
-	+	3	21
-
-> ~/tech/damascene/stencilMatrixMultiply/stencilMVM.cu
-	"	29	0
-
-> ~/tech/damascene/NERD_tree_1
-	"	20	2
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/tech/damascene/common.mk
-	"	54	0
-
-> ~/tech/damascene/LICENSE
-	"	1	0
-
-> ~/tech/damascene/Makefile
-	"	1	0
-
-> ~/projects/UCMMPI-Spectra/src/mex_pb_parts_final_selected.cpp
-	"	153	2
-
-> ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+> ~/projects/bsr/bsr_code/BSR/grouping/example.m
 	"	1	0
 
 > ~/projects/UCMMPI-Spectra/NERD_tree_1
-	"	52	0
+	"	12	2
 	.	1	0
 	+	1	0
 	+	1	0
 	+	1	0
 	+	1	0
 	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
+
+> ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+	"	520	11
+	.	504	0
+	+	504	0
 
 > ~/projects/UCMMPI-Spectra/src/watershed.cpp
-	"	33	0
+	"	85	0
 
-> ~/projects/UCMMPI-Spectra/libGLSVM.a
+> ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
+	"	687	103
+	^	687	104
+	.	687	103
+	+	26	17
+	+	428	46
+	+	429	0
+	+	428	86
+	+	437	20
+	+	435	0
+	+	437	0
+	+	435	86
+	+	436	163
+	+	436	41
+	+	436	12
+	+	436	109
+	+	684	0
+	+	683	75
+	+	685	147
+	+	686	81
+	+	685	66
+	+	685	0
+	+	686	0
+	+	428	0
+	+	686	81
+	+	686	81
+	+	436	109
+	+	686	81
+	+	687	8
+	+	687	0
+	+	688	0
+	+	687	103
+
+> ~/projects/ucmmpi_mod/src/UCMCPP.cpp
+	"	359	12
+
+> ~/.tmuxrc
 	"	1	0
 
-> ~/projects/UCMMPI-Spectra/src/globalPb.cpp
-	"	135	0
-
-> ~/projects/UCMMPI-Spectra/Makefile
-	"	3684	0
-
-> ~/projects/cuda/cuda_by_example/common/cpu_bitmap.h
-	"	49	22
-	^	27	0
+> ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
+	"	11	16
 	.	1	0
 	+	1	0
+	+	1	0
+	+	1	0
 
-> ~/projects/cuda/NERD_tree_1
-	"	20	0
+> ~/projects/gpb-gpu/NERD_tree_1
+	"	11	0
 	.	1	0
 	+	1	0
 	+	1	0
@@ -1450,258 +342,102 @@ $
 	+	1	0
 	+	1	0
 	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
 
-> ~/projects/cuda/cuda_by_example/chapter03/simple_kernel_params.cu
+> ~/projects/gpb-gpu/damascene/damascene.cu
+	"	521	0
+	.	492	0
+	+	492	0
+	+	492	32
+	+	489	34
+	+	492	0
+	+	492	36
+	+	492	0
+	+	492	3
+	+	492	0
+	+	492	44
+	+	492	0
+	+	492	40
+	+	492	21
+	+	492	10
+	+	492	0
+	+	492	0
+	+	492	28
+	+	469	0
+	+	469	0
+	+	469	8
+	+	469	35
+	+	469	9
+	+	469	36
+	+	469	2
+	+	469	77
+	+	469	0
+	+	469	0
+	+	469	56
+	+	485	0
+	+	485	0
+	+	485	0
+	+	469	0
+	+	469	0
+	+	469	0
+	+	469	24
+	+	492	2
+	+	492	9
+	+	492	12
+	+	492	0
+	+	492	0
+	+	492	37
+	+	469	39
+	+	492	25
+	+	469	0
+	+	486	0
+	+	492	0
+
+> ~/projects/gpb-gpu/postprocess/postprocessmain.cu
+	"	48	4
+
+> ~/projects/gpb-gpu/postprocess/skeleton.cu
+	"	79	16
+
+> /usr/local/cuda-8.0/samples/common/inc/helper_image.h
+	"	333	0
+
+> ~/.vimrc
+	"	1	0
+	.	15	0
+	+	15	0
+
+> ~/projects/gpb-gpu/localcues/parabola.cu
+	"	58	166
+	^	58	167
+	.	58	166
+	+	58	166
+
+> ~/.bash_profile
+	"	11	56
+	^	11	57
+	.	12	0
+	+	53	0
+	+	12	0
+
+> ~/.project
 	"	1	0
 
-> ~/projects/UCMMPI-Spectra/clean_build
-	"	3	12
-	^	3	13
-	.	3	11
-	+	1	14
-	+	4	0
-	+	2	0
-	+	3	11
-
-> ~/projects/cuda/cuda_by_example/NERD_tree_1
-	"	13	0
+> ~/projects/UCMMPI-Spectra/NERD_tree_2
+	"	47	0
 	.	1	0
 	+	1	0
 	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
 
-> ~/projects/cuda/cuda_by_example/NERD_tree_2
-	"	20	8
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/cuda/cuda_by_example/chapter04/add_loop_gpu.cu
-	"	33	0
-
-> ~/projects/cuda/cuda_by_example/chapter04/add_loop_cpu.cu
-	"	28	0
-
-> ~/projects/UCMMPI-Spectra/src/gPbCJT.cpp
-	"	73	0
-	^	81	4
-	.	81	0
-	+	48	1
-	+	48	0
-	+	60	0
-	+	81	0
-
-> ~/projects/UCMMPI-Spectra/gprof_out.txt
-	"	1	0
-
-> ~/projects/cuda/addVectors.cu
-	"	6	1
-	^	6	2
-	.	6	1
-	+	1	25
-	+	2	37
-	+	5	1
-	+	5	1
-	+	5	1
-	+	7	0
-	+	6	1
-
-> ~/tmux.conf
-	"	46	9
-	^	46	10
-	.	46	9
-	+	42	0
-	+	45	0
-	+	45	69
-	+	42	69
-	+	41	69
-	+	40	69
-	+	39	69
-	+	38	69
-	+	37	69
-	+	36	69
-	+	34	69
-	+	33	69
-	+	32	69
-	+	31	69
-	+	30	69
-	+	29	69
-	+	28	69
-	+	27	69
-	+	26	69
-	+	24	69
-	+	23	69
-	+	22	69
-	+	21	69
-	+	20	69
-	+	18	69
-	+	17	69
-	+	15	69
-	+	14	69
-	+	13	69
-	+	11	69
-	+	10	69
-	+	9	69
-	+	8	69
-	+	6	69
-	+	5	69
-	+	4	69
-	+	45	97
-	+	46	82
-	+	45	21
-	+	46	23
-	+	45	39
-	+	46	49
-	+	42	92
-	+	45	14
-	+	45	37
-	+	46	32
-	+	42	0
-	+	43	0
-	+	46	9
-
-> ~/projects/UCMMPI-Spectra/.gitignore
-	"	1	13
-	^	1	14
-	.	1	13
-	+	8	0
-	+	10	0
-	+	9	21
-	+	2	2
-	+	4	0
-	+	4	38
-	+	1	13
-
-> ~/.screenrc
-	"	1	0
-
-> ~/code/UCMMPI-Spectra/.gitignore
-	"	4	18
-	^	4	19
-	.	5	0
-	+	1	3
-	+	4	17
-	+	5	0
-
-> ~/code/UCMMPI-Spectra/NERD_tree_1
-	"	24	0
-	.	1	0
-	+	1	0
-
-> ~/.bash_logout
-	"	7	1
-	^	7	2
-	.	7	2
-	+	8	0
-	+	7	2
-
-> ~/code/cuda/NERD_tree_1
-	"	6	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/code/cuda/deviceQuery.cu
-	"	21	21
-	^	21	22
-	.	21	22
-	+	35	56
-	+	38	30
-	+	37	8
-	+	37	4
-	+	38	0
-	+	38	35
-	+	39	5
-	+	42	0
-	+	40	36
-	+	41	28
-	+	1	25
-	+	2	0
-	+	1	1
-	+	2	38
-	+	2	37
-	+	7	0
-	+	27	0
-	+	8	28
-	+	24	0
-	+	11	2
-	+	9	0
-	+	8	11
-	+	11	29
-	+	13	15
-	+	12	5
-	+	12	5
-	+	12	5
-	+	12	5
-	+	13	34
-	+	14	3
-	+	23	0
-	+	15	4
-	+	16	0
-	+	15	78
-	+	16	44
-	+	18	33
-	+	19	11
-	+	18	23
-	+	19	44
-	+	9	16
-	+	16	28
-	+	19	41
-	+	3	0
-	+	4	16
-	+	19	50
-	+	20	16
-	+	9	16
-	+	16	28
-	+	19	42
-	+	22	0
-	+	20	14
-	+	19	11
-	+	20	78
-	+	21	22
-
-> ~/projects/plp/cop5556sp17/src/build.sh
-	"	9	0
-	.	10	0
-	+	10	0
-
-> ~/projects/plp/cop5556sp17/bin/build.sh
-	"	1	0
-
-> ~/projects/plp/cop5556sp17/src/cop5556sp17/Scanner.java
-	"	190	12
-
-> ~/code/schat/NERD_tree_2
-	"	37	0
-	.	1	0
-	+	1	0
-
-> ~/code/schat/NERD_tree_3
-	"	86	7
-	.	1	0
-	+	1	0
-
-> ~/code/schat/src/schat/server/ClientHandler.java
-	"	17	0
-
-> ~/code/schat/Server.java
-	"	1	0
+> ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+	"	28	20
