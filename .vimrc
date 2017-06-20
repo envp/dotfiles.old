@@ -12,6 +12,7 @@ call plug#begin('~/.vim/vimplug')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-syntastic/syntastic'
     Plug 'craigemery/vim-autotag'
+    Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 

@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/path
+~MSle0~/nmax
 
 # Last Substitute Search Pattern:
 ~MSle0&pieceFilePat
@@ -17,15 +17,19 @@
 $pieceFilePath
 
 # Command Line History (newest to oldest):
-:wq
-:w
 :q
+:PlugInstall
+:PlugUpdate
+:w
+:e ~/.vimrc
+:%s/pieceFilePat/pieceFilePath/g
+:e src/UCMCPP/utilities.cpp
+:wq
 :q!
 :%s/pieceFilePat/pieceFilePath/gc
 :%s/
 :'<,'>%s
 :'<,'>
-:e src/UCMCPP/utilities.cpp
 :Q
 :e src/UCMCPP/UCMCPP.cpp
 :! make -j20
@@ -63,26 +67,31 @@ $pieceFilePath
 :s/system_clock/steady_clock/g
 :e .
 :e postprocess/skeleton.cu
-:e postprocess/postprocessmain.cu
-:PlugInstall
-:PlugUpgrade
-:PlugDiff
 
 # Search String History (newest to oldest):
+?/nmax
+?/piece_size =
+? \<bigRsz\>
+?/nbigim
+? \<piece_size\>
+? pieceFilePat
+? \<img2pieces\>
+? \<sub_rsz\>
+?/img2
+? \<make_pair\>
+? \<gtFileName\>
+?/img2pieces
+? \<bigPieceFilePat\>
 ?/path
 ?/---
 ?/sx
 ? \<bigPiece_size\>
 ?/option.big
-? \<bigRsz\>
 ?/std
 ?/namespace srd
 ? \<nBigIm\>
 ?/bigRsz
 ? \<rsz\>
-?/img2pieces
-? pieceFilePat
-? \<img2pieces\>
 ?/bigRsz =
 ? \<dim_sizes\>
 ?/mpi_cart_create
@@ -105,20 +114,11 @@ $pieceFilePath
 ? \<pieces2gPb\>
 ?/cum_rsz
 ??piecefilepat
-? \<bigPieceFilePat\>
 ? \<bigsx\>
 ? \<coordinates\>
 ?/cmake_build
 ?/-pg
 ? \<DMS_SOURCE_DIR\>
-? \<CUDA_NVCC_FLAGS\>
-?/NVCC_FLAGS
-?/cmake_cxx_
-?/CMAKE_XX
-? \<damascene\>
-?/damascene
-? \<damascene_o\>
-?/MESSAGE
 
 # Expression History (newest to oldest):
 
@@ -127,9 +127,13 @@ $pieceFilePath
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
-	 pieceFilePat
+"0	LINE	0
+	void globalPb(std::string imgFile, std::string outFile, std::vector<cv::Mat>& gPb, double rsz = 1.0) ;
 "1	LINE	0
+			}
+"2	LINE	0
+			if(true) {
+"3	LINE	0
 		//std::cout<<im.at<int>
 		/*imshow("double", imd) ;
 		imshow("original", im) ;
@@ -138,57 +142,81 @@ $pieceFilePath
 		im.convertTo(imd1, CV_32FC3) ;
 		imshow("float", imd1) ;
 		waitKey(0);*/
-"2	LINE	0
-		//std::cout<<im.at<int>
-"3	LINE	0
-	logs/
 "4	LINE	0
-	!labeledData/rio1.jpg
+		//std::cout<<im.at<int>
 "5	LINE	0
-	!labeledData/rio1.jpg
+	logs/
 "6	LINE	0
-	rio1_labels_map_class_2.yml
+	!labeledData/rio1.jpg
 "7	LINE	0
-	  DAMASCENE_O
+	!labeledData/rio1.jpg
 "8	LINE	0
-	  DAMASCENE_O
+	rio1_labels_map_class_2.yml
 "9	LINE	0
-	cuda_compile(DAMASCENE_O "${DMS_SOURCE_DIR}/damascene.cu")
+	  DAMASCENE_O
 "b	CHAR	0
 	,
-"-	CHAR	0
-	s
+""-	CHAR	0
+	/
 
 # File marks:
-'0  11  37  ~/.bash_profile
-'1  82  13  ~/.aliases
-'2  63  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
-'3  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
-'4  1  0  ~/projects/ucm-mpi/,
-'5  418  26  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
-'6  9  0  ~/projects/ucm-mpi/.gitignore
-'7  1  0  ~/projects/ucm-mpi/NERD_tree_1
-'8  18  0  ~/projects/ucm-mpi/.gitignore
-'9  27  36  ~/projects/ucm-mpi/.gitignore
+'0  1  0  ~/projects/ucm-mpi/NERD_tree_1
+'1  15  10  ~/.vimrc
+'2  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+'3  1  0  ~/projects/ucm-mpi/,
+'4  420  26  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+'5  9  0  ~/projects/ucm-mpi/.gitignore
+'6  18  0  ~/projects/ucm-mpi/.gitignore
+'7  27  36  ~/projects/ucm-mpi/.gitignore
+'8  6  0  ~/projects/ucm-mpi/CMakeLists.txt
+'9  73  0  ~/projects/ucm-mpi/CMakeLists.txt
 
 # Jumplist (newest first):
--'  11  37  ~/.bash_profile
--'  1  0  ~/.bash_profile
--'  82  13  ~/.aliases
--'  2  0  ~/.aliases
--'  1  0  ~/.aliases
--'  63  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
--'  25  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
--'  1  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+-'  1  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  22  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  15  10  ~/.vimrc
+-'  441  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  444  42  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  440  15  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  439  33  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  437  14  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  324  17  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  13  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  241  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  438  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  451  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  450  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  449  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  448  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  442  46  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  443  47  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  452  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  388  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  322  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  214  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  221  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  162  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  252  75  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  338  38  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  335  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  199  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  260  20  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  50  0  ~/projects/ucm-mpi/include/otherheaders.h
+-'  97  31  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  69  28  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  347  20  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  1  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  240  39  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  239  107  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  206  15  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  58  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  72  2  ~/projects/ucm-mpi/NERD_tree_1
 -'  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
 -'  171  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  206  51  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  1205  119  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  1072  66  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  199  85  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1210  119  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1077  66  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  333  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
 -'  332  11  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  221  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  222  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  216  22  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  201  56  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
@@ -197,101 +225,59 @@ $pieceFilePath
 -'  331  6  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
 -'  477  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
 -'  323  26  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  1  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
 -'  217  28  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  300  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  351  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  348  7  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  302  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  353  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  350  7  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  144  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  143  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  210  18  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  313  36  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  315  36  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 -'  18  1  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
--'  12  10  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
--'  163  13  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
--'  1  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  37  0  ~/projects/ucm-mpi/NERD_tree_1
--'  51  2  ~/projects/ucm-mpi/NERD_tree_1
--'  1  0  ~/projects/ucm-mpi/NERD_tree_1
--'  1  0  ~/projects/ucm-mpi/,
--'  418  26  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  415  35  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  201  10  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  218  1  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  408  30  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  91  5  ~/projects/ucm-mpi/NERD_tree_1
--'  99  2  ~/projects/ucm-mpi/NERD_tree_1
--'  9  0  ~/projects/ucm-mpi/.gitignore
--'  1  0  ~/projects/ucm-mpi/.gitignore
--'  104  2  ~/projects/ucm-mpi/NERD_tree_1
--'  18  0  ~/projects/ucm-mpi/.gitignore
--'  27  36  ~/projects/ucm-mpi/.gitignore
--'  24  0  ~/projects/ucm-mpi/.gitignore
--'  6  0  ~/projects/ucm-mpi/CMakeLists.txt
--'  145  0  ~/projects/ucm-mpi/NERD_tree_1
--'  147  2  ~/projects/ucm-mpi/NERD_tree_1
--'  73  0  ~/projects/ucm-mpi/CMakeLists.txt
--'  157  0  ~/projects/ucm-mpi/NERD_tree_1
--'  159  2  ~/projects/ucm-mpi/NERD_tree_1
--'  184  2  ~/projects/ucm-mpi/NERD_tree_1
--'  203  2  ~/projects/ucm-mpi/NERD_tree_1
--'  44  12  ~/projects/damascene/CMakeLists.txt
--'  98  0  ~/projects/ucm-mpi/CMakeLists.txt
--'  46  0  ~/projects/damascene/CMakeLists.txt
--'  120  2  ~/projects/ucm-mpi/CMakeLists.txt
--'  119  2  ~/projects/ucm-mpi/CMakeLists.txt
--'  44  0  ~/projects/ucm-mpi/CMakeLists.txt
--'  111  38  ~/projects/ucm-mpi/CMakeLists.txt
--'  78  0  ~/projects/ucm-mpi/CMakeLists.txt
--'  45  12  ~/projects/damascene/CMakeLists.txt
--'  43  12  ~/projects/damascene/CMakeLists.txt
--'  42  12  ~/projects/damascene/CMakeLists.txt
--'  41  17  ~/projects/damascene/CMakeLists.txt
--'  35  0  ~/projects/damascene/CMakeLists.txt
--'  97  62  ~/projects/ucm-mpi/CMakeLists.txt
--'  43  52  ~/projects/ucm-mpi/CMakeLists.txt
--'  25  2  ~/projects/ucm-mpi/CMakeLists.txt
--'  16  2  ~/projects/ucm-mpi/CMakeLists.txt
--'  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
--'  171  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  206  51  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  1205  119  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  1072  66  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  199  85  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  333  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  332  11  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  221  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  222  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  216  22  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  201  56  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  185  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  22  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
--'  331  6  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  477  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  323  26  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  15  10  ~/.vimrc
+-'  441  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  444  42  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  440  15  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  439  33  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  437  14  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  324  17  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  13  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  241  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  438  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  451  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  450  2  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  449  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  448  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  442  46  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  443  47  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  452  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  388  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  322  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  214  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  221  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  162  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  252  75  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  338  38  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  335  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  199  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  260  20  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  50  0  ~/projects/ucm-mpi/include/otherheaders.h
+-'  97  31  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  69  28  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  347  20  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
 -'  1  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
--'  217  28  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
--'  300  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  240  39  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  239  107  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 
 # History of marks within files (newest to oldest):
 
-> ~/.bash_profile
-	"	11	37
-	^	11	38
-	.	11	38
-	+	53	0
-	+	12	0
-	+	11	38
-
-> ~/.aliases
-	"	82	13
-
-> ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
-	"	63	0
-
 > ~/projects/ucm-mpi/NERD_tree_1
-	"	37	0
+	"	1	0
 	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
 	+	1	0
 	+	1	0
 	+	1	0
@@ -326,20 +312,56 @@ $pieceFilePath
 	+	1	0
 
 > ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
-	"	171	3
-	.	222	0
+	"	441	1
+	^	441	2
+	.	447	7
 	+	174	27
-	+	322	26
-	+	273	66
-	+	271	36
-	+	274	0
+	+	324	26
+	+	275	66
+	+	273	36
+	+	276	0
 	+	174	29
 	+	144	0
 	+	222	0
 	+	222	0
+	+	239	107
+	+	253	48
+	+	9	16
+	+	10	16
+	+	13	13
+	+	241	0
+	+	439	0
+	+	438	4
+	+	451	4
+	+	450	1
+	+	449	0
+	+	449	0
+	+	443	50
+	+	441	42
+	+	441	42
+	+	442	48
+	+	443	50
+	+	443	50
+	+	444	0
+	+	444	0
+	+	441	0
+	+	444	0
+	+	444	0
+	+	444	0
+	+	241	0
+	+	13	13
+	+	438	0
+	+	451	0
+	+	443	49
+	+	445	0
+	+	442	48
+	+	447	0
+	+	441	43
+	+	447	7
+	i	13	10
 
 > ~/projects/ucm-mpi/NERD_tree_2
-	"	38	1
+	"	16	0
 	.	1	0
 	+	1	0
 	+	1	0
@@ -349,26 +371,20 @@ $pieceFilePath
 	+	1	0
 	+	1	0
 	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
 
-> ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
-	"	21	0
-	^	10	23
-	.	18	0
-	+	373	0
-	+	375	22
-	+	540	23
-	+	545	0
-	+	540	0
-	+	375	13
-	+	10	22
-	+	187	0
-	+	188	0
-	+	189	0
-	+	10	23
-	+	18	0
+> ~/projects/ucm-mpi/include/otherheaders.h
+	"	50	0
+	^	50	23
+	.	50	22
+	+	51	22
+	+	50	22
 
 > ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
-	"	333	0
+	"	338	38
 	.	333	0
 	+	323	0
 	+	324	0
@@ -390,6 +406,44 @@ $pieceFilePath
 	+	469	0
 	+	471	0
 	+	333	0
+
+> ~/.vimrc
+	"	15	10
+	^	15	60
+	.	15	10
+	+	16	0
+	+	15	10
+
+> ~/.bash_profile
+	"	11	37
+	^	11	38
+	.	11	38
+	+	53	0
+	+	12	0
+	+	11	38
+
+> ~/.aliases
+	"	82	13
+
+> ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+	"	63	0
+
+> ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+	"	21	0
+	^	10	23
+	.	18	0
+	+	373	0
+	+	375	22
+	+	540	23
+	+	545	0
+	+	540	0
+	+	375	13
+	+	10	22
+	+	187	0
+	+	188	0
+	+	189	0
+	+	10	23
+	+	18	0
 
 > ~/.bashrc
 	"	11	0
@@ -415,12 +469,6 @@ $pieceFilePath
 
 > ~/projects/ucm-mpi/.clang-format
 	"	1	0
-
-> ~/projects/ucm-mpi/include/otherheaders.h
-	"	50	22
-	^	50	23
-	.	50	22
-	+	50	22
 
 > ~/projects/ucm-mpi/.gitignore
 	"	9	0
@@ -1095,11 +1143,6 @@ $pieceFilePath
 
 > /usr/local/cuda-8.0/samples/common/inc/helper_image.h
 	"	333	0
-
-> ~/.vimrc
-	"	1	0
-	.	15	0
-	+	15	0
 
 > ~/projects/gpb-gpu/localcues/parabola.cu
 	"	58	166
