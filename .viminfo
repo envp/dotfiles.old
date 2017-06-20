@@ -8,87 +8,117 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~Msle0~/\<create_finest_partition\>
+~MSle0~/path
 
 # Last Substitute Search Pattern:
-~MSle0&system_clock
+~MSle0&pieceFilePat
 
 # Last Substitute String:
-$steady_clock
+$pieceFilePath
 
 # Command Line History (newest to oldest):
-:q
-:e src/watershed.cpp
 :wq
 :w
+:q
+:q!
+:%s/pieceFilePat/pieceFilePath/gc
+:%s/
+:'<,'>%s
+:'<,'>
+:e src/UCMCPP/utilities.cpp
+:Q
+:e src/UCMCPP/UCMCPP.cpp
+:! make -j20
+:! cmake .
+:e src/UCMCPP/
+:colorscheme wombat256mod
+:colorscheme 256-grayvim
+:.,.+1531:56 .....     13358155     13358592  UCMMPI-Spectra\labeledData\rio1_labels_map_class_2.yml
+:W
+:colorscheme base16-railscasts
+:colorscheme Monokai
+:colorscheme atom
+:e src/UCMCPP/globalPb.cpp
+:%s/damascene_SRC/DMS_SOURCE_DIR/gc
+:%s/SOURCE_DIR/damascene_SRC/gc
+:e ../damascene/CMakeLists.txt
+:'<,'>q
+:e CMakeLists.txt
+:e src/UCMCPP.cpp
+:e src/contours2ucm.cpp
+:e src/SPFeatures.cpp
+:%s/seconds/ms/gc
+:%s/high_resolution_clock/std::chrono::high_resolution_clock/gc
+:%s/double, std::milli/std::chrono::milliseconds/gc
+:%s/duration/std::chrono::duration/gc
+:%s/duration/std::chrono::duration
+:%s/hclock/high_resolution_clock/gc
+:%s/hclock/std::chrono::high_resolution_clock/gc
+:e src/UCMgenerator.cpp
+:e ../UCMMPI-Spectra/
+:e bsr_code/
+:e src/watershed.cpp
 :Reading
 :%s/system_clock/steady_clock/g
 :s/system_clock/steady_clock/g
 :e .
-:Q
 :e postprocess/skeleton.cu
 :e postprocess/postprocessmain.cu
-:W
 :PlugInstall
 :PlugUpgrade
 :PlugDiff
-:PlugUpdate
-:PlugStatus
-:e ~/.vimrc
-:Tagbar
-:!ctags -R example.m
-:tags
-:vim contours2ucm **/*.cpp | copen
 
 # Search String History (newest to oldest):
-? \<create_finest_partition\>
-? \<bwlabel\>
-?/bwlabel
-? \<minMaxLoc\>
-? \<watershed_yupeng\>
-?/watershed
-?/cont
-?/Reading
-? system_clock
-?/:%s/system_clock/steady_clock/g
-?/Readin
-?/chrono
-? \<Reading\>
-?/Reading 
+?/path
+?/---
+?/sx
+? \<bigPiece_size\>
+?/option.big
+? \<bigRsz\>
+?/std
+?/namespace srd
+? \<nBigIm\>
+?/bigRsz
+? \<rsz\>
+?/img2pieces
+? pieceFilePat
+? \<img2pieces\>
+?/bigRsz =
+? \<dim_sizes\>
+?/mpi_cart_create
+?/MPI
+?/with_nmax
+? \<nowd1\>
+? \<imageName\>
+? \<pieceFilePat\>
+?/pieces2gpb
+? \<nOrient\>
+?/gpb
+? \<gPb\>
 ?/globalPb
-? \<watershed\>
-? \<clean_watersheds\>
-? \<super_contour_4c\>
-?/c
-? \<normalizeSigmoid\>
-? \<mask\>
-? \<normalizewrtmpb\>
-? \<devGPb\>
-?/PostProcess
-? \<PostProcess\>
-?/Post
-?/postprocess
-?/postprc
-?/PosProcess
-?/hostgpb
-?/devgpb
-?/hostGPb
-?/hostHPb
-? \<outputPBfilename\>
-? \<hostGPb\>
-? \<sdkSavePGM\>
-?/sdkSavePGM
-? \<__savePPM\>
-?/convertertoubyte
-? \<ConverterToUByte\>
-?/ConverterToUByte
-?/savePGM
-?/__savePPM
-?/contours
-?/generateUCM2
-? \<generateUCM2\>
-? \<ucm\>
-? \<generateBdryAtScaleK\>
+?/brace
+?/utFile
+? \<outFile\>
+?/global
+? \<gPb_0\>
+?/gpb_0
+? \<pieces2gPb\>
+?/cum_rsz
+??piecefilepat
+? \<bigPieceFilePat\>
+? \<bigsx\>
+? \<coordinates\>
+?/cmake_build
+?/-pg
+? \<DMS_SOURCE_DIR\>
+? \<CUDA_NVCC_FLAGS\>
+?/NVCC_FLAGS
+?/cmake_cxx_
+?/CMAKE_XX
+? \<damascene\>
+?/damascene
+? \<damascene_o\>
+?/MESSAGE
 
 # Expression History (newest to oldest):
 
@@ -97,147 +127,784 @@ $steady_clock
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	LINE	0
-		vector<coordinates> XY_A;
+""0	CHAR	0
+	 pieceFilePat
 "1	LINE	0
-	            chrono::
+		//std::cout<<im.at<int>
+		/*imshow("double", imd) ;
+		imshow("original", im) ;
+	
+		Mat imd1 ;
+		im.convertTo(imd1, CV_32FC3) ;
+		imshow("float", imd1) ;
+		waitKey(0);*/
 "2	LINE	0
-		% create finest partition and transfer contour strength
-		[ws_wt] = create_finest_partition(pb_oriented);
+		//std::cout<<im.at<int>
 "3	LINE	0
-	   */
+	logs/
 "4	LINE	0
-	  /*
+	!labeledData/rio1.jpg
 "5	LINE	0
-	
+	!labeledData/rio1.jpg
 "6	LINE	0
-	
+	rio1_labels_map_class_2.yml
 "7	LINE	0
-	  FILE* gpbFile;
-	  
-	  float* hostGPb = (float*)malloc(sizeof(float)*nPixels);
-	  cudaMemcpy(hostGPb, devGPb, sizeof(float)*nPixels, cudaMemcpyDeviceToHost);
-	  gpbFile = fopen("devGpb_before_PostProcess.txt", "w");
-	  for(int i = 0; i < nPixels; ++i) 
-	  {
-	    /*
-	     *fprintf(gpbFile, "%f, %d\n", hostGPb[i], (unsigned short) (255 * hostGPb[i]));
-	     */
-	    fprintf(gpbFile, "%f\n", hostGPb[i]);
-	  }
-	  fclose(gpbFile);
+	  DAMASCENE_O
 "8	LINE	0
-	{
+	  DAMASCENE_O
 "9	LINE	0
-	
+	cuda_compile(DAMASCENE_O "${DMS_SOURCE_DIR}/damascene.cu")
 "b	CHAR	0
 	,
 "-	CHAR	0
-	\
+	s
 
 # File marks:
-'0  1  0  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
-'1  520  11  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
-'2  687  103  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
-'3  359  12  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
-'4  1  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
-'5  1  0  ~/.tmuxrc
-'6  1  0  .
-'7  54  5  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
-'8  1  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
-'9  27  20  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
+'0  11  37  ~/.bash_profile
+'1  82  13  ~/.aliases
+'2  63  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+'3  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+'4  1  0  ~/projects/ucm-mpi/,
+'5  418  26  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+'6  9  0  ~/projects/ucm-mpi/.gitignore
+'7  1  0  ~/projects/ucm-mpi/NERD_tree_1
+'8  18  0  ~/projects/ucm-mpi/.gitignore
+'9  27  36  ~/projects/ucm-mpi/.gitignore
 
 # Jumplist (newest first):
--'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/example.m
--'  15  0  ~/projects/bsr/NERD_tree_1
--'  62  2  ~/projects/bsr/NERD_tree_1
--'  1  0  ~/projects/bsr/NERD_tree_1
--'  520  11  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  316  4  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  507  25  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  120  44  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  107  17  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  538  19  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  423  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  85  0  ~/projects/UCMMPI-Spectra/src/watershed.cpp
--'  348  12  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  23  1  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  336  1  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  88  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  1  0  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  12  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  1  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  45  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  687  103  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  686  154  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  437  2  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  683  8  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  685  68  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  436  120  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  27  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  679  16  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  430  12  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  1  0  ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
--'  90  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  120  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  359  12  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
--'  1  0  ~/projects/ucmmpi_mod/src/UCMCPP.cpp
--'  1  0  ~/.tmuxrc
--'  1  0  .
--'  54  5  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  51  19  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  27  15  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  31  19  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  30  20  ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
--'  11  16  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
--'  7  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
--'  56  2  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
--'  1  0  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
--'  64  2  ~/projects/bsr/bsr_code/BSR/grouping/NERD_tree_1
--'  73  8  ~/projects/bsr/NERD_tree_1
--'  69  0  ~/projects/bsr/NERD_tree_1
--'  120  2  ~/projects/bsr/NERD_tree_1
--'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
--'  501  4  ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
--'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  164  0  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  194  2  ~/projects/UCMMPI-Spectra/NERD_tree_1
--'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
--'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
--'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  47  0  ~/projects/UCMMPI-Spectra/NERD_tree_2
--'  104  8  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  79  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  78  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  77  10  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  74  35  ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
--'  66  2  ~/projects/bsr/NERD_tree_1
--'  521  0  ~/projects/gpb-gpu/damascene/damascene.cu
--'  79  16  ~/projects/gpb-gpu/postprocess/skeleton.cu
--'  181  4  ~/projects/gpb-gpu/postprocess/skeleton.cu
--'  180  13  ~/projects/gpb-gpu/postprocess/skeleton.cu
--'  184  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
--'  169  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
--'  153  0  ~/projects/gpb-gpu/postprocess/skeleton.cu
+-'  11  37  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  82  13  ~/.aliases
+-'  2  0  ~/.aliases
+-'  1  0  ~/.aliases
+-'  63  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+-'  25  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+-'  1  0  ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+-'  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  171  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  206  51  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1205  119  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1072  66  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  199  85  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  333  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  332  11  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  221  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  222  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  216  22  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  201  56  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  185  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  22  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  331  6  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  477  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  323  26  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  1  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  217  28  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  300  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  351  16  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  348  7  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  144  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  143  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  210  18  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  313  36  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  18  1  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  12  10  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  163  13  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  1  0  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  37  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  51  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  1  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  1  0  ~/projects/ucm-mpi/,
+-'  418  26  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  415  35  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  201  10  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  218  1  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  408  30  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  91  5  ~/projects/ucm-mpi/NERD_tree_1
+-'  99  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  9  0  ~/projects/ucm-mpi/.gitignore
+-'  1  0  ~/projects/ucm-mpi/.gitignore
+-'  104  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  18  0  ~/projects/ucm-mpi/.gitignore
+-'  27  36  ~/projects/ucm-mpi/.gitignore
+-'  24  0  ~/projects/ucm-mpi/.gitignore
+-'  6  0  ~/projects/ucm-mpi/CMakeLists.txt
+-'  145  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  147  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  73  0  ~/projects/ucm-mpi/CMakeLists.txt
+-'  157  0  ~/projects/ucm-mpi/NERD_tree_1
+-'  159  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  184  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  203  2  ~/projects/ucm-mpi/NERD_tree_1
+-'  44  12  ~/projects/damascene/CMakeLists.txt
+-'  98  0  ~/projects/ucm-mpi/CMakeLists.txt
+-'  46  0  ~/projects/damascene/CMakeLists.txt
+-'  120  2  ~/projects/ucm-mpi/CMakeLists.txt
+-'  119  2  ~/projects/ucm-mpi/CMakeLists.txt
+-'  44  0  ~/projects/ucm-mpi/CMakeLists.txt
+-'  111  38  ~/projects/ucm-mpi/CMakeLists.txt
+-'  78  0  ~/projects/ucm-mpi/CMakeLists.txt
+-'  45  12  ~/projects/damascene/CMakeLists.txt
+-'  43  12  ~/projects/damascene/CMakeLists.txt
+-'  42  12  ~/projects/damascene/CMakeLists.txt
+-'  41  17  ~/projects/damascene/CMakeLists.txt
+-'  35  0  ~/projects/damascene/CMakeLists.txt
+-'  97  62  ~/projects/ucm-mpi/CMakeLists.txt
+-'  43  52  ~/projects/ucm-mpi/CMakeLists.txt
+-'  25  2  ~/projects/ucm-mpi/CMakeLists.txt
+-'  16  2  ~/projects/ucm-mpi/CMakeLists.txt
+-'  21  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  171  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  206  51  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1205  119  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  1072  66  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  199  85  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  333  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  332  11  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  221  21  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  222  1  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  216  22  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  201  56  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  185  3  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  22  0  ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+-'  331  6  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  477  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  323  26  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  1  0  ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+-'  217  28  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+-'  300  13  ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
 
 # History of marks within files (newest to oldest):
 
+> ~/.bash_profile
+	"	11	37
+	^	11	38
+	.	11	38
+	+	53	0
+	+	12	0
+	+	11	38
+
+> ~/.aliases
+	"	82	13
+
+> ~/projects/ucm-mpi/logs/ucmcpp_64_3_200_2000_SPSP.log
+	"	63	0
+
+> ~/projects/ucm-mpi/NERD_tree_1
+	"	37	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/projects/ucm-mpi/src/UCMCPP/UCMCPP.cpp
+	"	171	3
+	.	222	0
+	+	174	27
+	+	322	26
+	+	273	66
+	+	271	36
+	+	274	0
+	+	174	29
+	+	144	0
+	+	222	0
+	+	222	0
+
+> ~/projects/ucm-mpi/NERD_tree_2
+	"	38	1
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/projects/ucm-mpi/src/UCMCPP/globalPb.cpp
+	"	21	0
+	^	10	23
+	.	18	0
+	+	373	0
+	+	375	22
+	+	540	23
+	+	545	0
+	+	540	0
+	+	375	13
+	+	10	22
+	+	187	0
+	+	188	0
+	+	189	0
+	+	10	23
+	+	18	0
+
+> ~/projects/ucm-mpi/src/UCMCPP/utilities.cpp
+	"	333	0
+	.	333	0
+	+	323	0
+	+	324	0
+	+	172	0
+	+	213	0
+	+	250	0
+	+	261	0
+	+	262	0
+	+	287	0
+	+	301	0
+	+	309	0
+	+	323	0
+	+	344	0
+	+	364	0
+	+	417	0
+	+	424	0
+	+	446	0
+	+	465	0
+	+	469	0
+	+	471	0
+	+	333	0
+
+> ~/.bashrc
+	"	11	0
+
+> ~/projects/ucm-mpi/,
+	"	1	0
+
+> ~/projects/ucm-mpi/.git/COMMIT_EDITMSG
+	"	1	77
+	^	1	78
+	.	1	77
+	+	1	69
+	+	1	1
+	+	2	1
+	+	1	36
+	+	2	69
+	+	2	69
+	+	2	105
+	+	3	52
+	+	3	52
+	+	3	96
+	+	1	77
+
+> ~/projects/ucm-mpi/.clang-format
+	"	1	0
+
+> ~/projects/ucm-mpi/include/otherheaders.h
+	"	50	22
+	^	50	23
+	.	50	22
+	+	50	22
+
+> ~/projects/ucm-mpi/.gitignore
+	"	9	0
+	.	9	0
+	+	29	0
+	+	12	21
+	+	23	0
+	+	24	0
+	+	27	0
+	+	27	0
+	+	27	0
+	+	23	23
+	+	24	0
+	+	28	107
+	+	28	0
+	+	24	13
+	+	24	13
+	+	27	0
+	+	24	35
+	+	25	0
+	+	26	0
+	+	27	0
+	+	25	35
+	+	26	35
+	+	27	36
+	+	19	2
+	+	20	1
+	+	19	1
+	+	20	17
+	+	21	0
+	+	1	1
+	+	3	0
+	+	12	0
+	+	20	11
+	+	2	9
+	+	12	0
+	+	13	0
+	+	14	0
+	+	15	0
+	+	16	0
+	+	17	0
+	+	14	6
+	+	15	5
+	+	16	5
+	+	17	10
+	+	9	0
+
+> ~/projects/ucm-mpi/CMakeLists.txt
+	"	6	0
+	^	6	0
+	.	98	53
+	+	16	28
+	+	16	5
+	+	24	0
+	+	16	13
+	+	25	17
+	+	26	18
+	+	32	0
+	+	28	34
+	+	28	34
+	+	28	64
+	+	29	23
+	+	30	26
+	+	31	18
+	+	33	0
+	+	44	0
+	+	34	0
+	+	28	60
+	+	37	46
+	+	28	46
+	+	80	0
+	+	81	0
+	+	80	15
+	+	89	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	21
+	+	56	0
+	+	44	0
+	+	44	0
+	+	70	0
+	+	44	0
+	+	97	128
+	+	100	22
+	+	43	0
+	+	44	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	0
+	+	100	23
+	+	100	8
+	+	100	15
+	+	100	0
+	+	107	0
+	+	100	0
+	+	100	23
+	+	120	12
+	+	100	0
+	+	123	0
+	+	100	0
+	+	33	0
+	+	111	0
+	+	107	0
+	+	120	0
+	+	97	62
+	+	16	0
+	+	111	41
+	+	44	0
+	+	111	55
+	+	120	12
+	+	87	0
+	+	111	15
+	+	97	62
+	+	98	0
+	+	68	25
+	+	99	0
+	+	98	3
+	+	100	0
+	+	98	59
+	+	98	57
+	+	111	0
+	+	108	0
+	+	109	0
+	+	112	0
+	+	110	36
+	+	110	36
+	+	120	0
+	+	98	53
+
+> ~/projects/damascene/CMakeLists.txt
+	"	44	12
+
+> ~/projects/damascene/src/damascene.cu
+	"	222	2
+
+> ~/projects/ucm-mpi/src/NERD_tree_1
+	"	9	0
+	.	1	0
+	+	1	0
+
+> ~/projects/UCMCPP/NERD_tree_1
+	"	21	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/projects/UCMCPP/src/UCMCPP/globalPb.cpp
+	"	75	1
+
+> ~/projects/UCMCPP/src/gPbCJT/gPbCJT.cpp
+	"	67	0
+
+> ~/projects/UCMCPP/include/otherheaders.h
+	"	7	0
+
+> ~/projects/ucmmpi_mod/NERD_tree_1
+	"	47	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/projects/ucmmpi_mod/src/contours2ucm.cpp
+	"	18	0
+	^	601	74
+	.	601	73
+	+	10	17
+	+	11	0
+	+	513	64
+	+	513	1
+	+	516	0
+	+	513	63
+	+	516	0
+	+	504	0
+	+	510	63
+	+	510	4
+	+	511	64
+	+	512	4
+	+	512	0
+	+	512	0
+	+	513	0
+	+	512	5
+	+	514	4
+	+	514	0
+	+	515	0
+	+	514	80
+	+	510	0
+	+	525	0
+	+	524	0
+	+	526	5
+	+	529	71
+	+	537	0
+	+	539	0
+	+	537	71
+	+	532	0
+	+	534	5
+	+	551	0
+	+	553	5
+	+	554	62
+	+	589	0
+	+	591	0
+	+	594	0
+	+	591	0
+	+	594	0
+	+	590	0
+	+	592	5
+	+	593	66
+	+	602	0
+	+	597	4
+	+	598	0
+	+	600	5
+	+	595	0
+	+	601	73
+
+> ~/projects/ucmmpi_mod/src/UCMgenerator.cpp
+	"	61	0
+	^	49	3
+	.	59	0
+	+	12	0
+	+	13	53
+	+	33	25
+	+	34	22
+	+	33	25
+	+	36	22
+	+	46	148
+	+	53	35
+	+	53	0
+	+	53	27
+	+	53	3
+	+	59	0
+	+	55	9
+	+	54	0
+	+	56	59
+	+	13	13
+	+	8	25
+	+	11	0
+	+	13	48
+	+	11	19
+	+	13	0
+	+	13	0
+	+	13	0
+	+	13	0
+	+	13	0
+	+	13	0
+	+	33	0
+	+	34	0
+	+	36	0
+	+	45	0
+	+	53	0
+	+	55	0
+	+	13	0
+	+	9	17
+	+	46	0
+	+	56	0
+	+	46	141
+	+	56	127
+	+	46	0
+	+	46	126
+	+	56	113
+	+	56	0
+	+	46	0
+	+	56	0
+	+	51	2
+	+	52	2
+	+	62	2
+	+	63	2
+	+	64	2
+	+	65	2
+	+	66	2
+	+	67	2
+	+	68	2
+	+	50	2
+	+	49	1
+	+	50	1
+	+	46	0
+	+	45	0
+	+	36	0
+	+	46	0
+	+	47	0
+	+	53	0
+	+	54	0
+	+	55	0
+	+	56	0
+	+	57	0
+	+	58	0
+	+	59	0
+
+> ~/projects/ucmmpi_mod/src/UCMCPP.cpp
+	"	1038	47
+	^	444	19
+	.	444	18
+	+	455	30
+	+	457	30
+	+	458	86
+	+	462	79
+	+	459	11
+	+	461	12
+	+	471	0
+	+	473	85
+	+	478	79
+	+	472	11
+	+	470	10
+	+	473	28
+	+	471	28
+	+	474	0
+	+	474	0
+	+	474	0
+	+	473	28
+	+	478	28
+	+	475	0
+	+	479	0
+	+	477	11
+	+	30	52
+	+	30	0
+	+	30	49
+	+	29	19
+	+	29	19
+	+	30	0
+	+	455	0
+	+	457	0
+	+	459	0
+	+	461	0
+	+	470	0
+	+	472	0
+	+	475	0
+	+	477	0
+	+	30	0
+	+	458	0
+	+	462	0
+	+	473	0
+	+	478	0
+	+	458	98
+	+	462	97
+	+	473	106
+	+	478	108
+	+	458	0
+	+	462	0
+	+	473	0
+	+	478	0
+	+	455	0
+	+	457	0
+	+	459	0
+	+	461	0
+	+	470	0
+	+	472	0
+	+	475	0
+	+	477	0
+	+	458	0
+	+	462	0
+	+	473	0
+	+	478	0
+	+	550	10
+	+	557	0
+	+	556	57
+	+	556	0
+	+	558	0
+	+	560	0
+	+	558	56
+	+	579	88
+	+	501	0
+	+	496	0
+	+	498	57
+	+	500	0
+	+	499	67
+	+	473	64
+	+	519	66
+	+	516	8
+	+	496	8
+	+	516	0
+	+	519	11
+	+	519	0
+	+	518	11
+	+	684	0
+	+	690	57
+	+	692	0
+	+	691	28
+	+	568	0
+	+	567	0
+	+	569	0
+	+	570	0
+	+	569	11
+	+	570	43
+	+	572	0
+	+	331	0
+	+	310	0
+	+	519	39
+	+	441	73
+	+	442	39
+	+	442	50
+	+	443	0
+	+	444	18
+
+> ~/projects/ucmmpi_mod/CMakeLists.txt
+	"	536	0
+	^	536	68
+	.	536	0
+	+	536	0
+	+	536	0
+	+	534	45
+	+	535	59
+	+	536	65
+	+	534	45
+	+	535	59
+	+	536	65
+	+	534	48
+	+	535	62
+	+	536	67
+	+	536	0
+	+	534	0
+	+	535	0
+	+	536	0
+
+> ~/projects/ucmmpi_mod/src/GLSVM.cpp
+	"	2	1
+
+> ~/projects/ucmmpi_mod/src/UCM_utilities.cpp
+	"	1	0
+
+> ~/projects/ucmmpi_mod/src/SPFeatures.cpp
+	"	79	37
+
+> ~/projects/ucmmpi_mod/NERD_tree_2
+	"	4	0
+	.	1	0
+	+	1	0
+
 > ~/projects/bsr/NERD_tree_1
-	"	15	0
+	"	15	8
 	.	1	0
 	+	1	0
 	+	1	0
@@ -250,38 +917,34 @@ $steady_clock
 	+	1	0
 
 > ~/projects/bsr/bsr_code/BSR/grouping/lib/contours2ucm.m
-	"	1	0
+	"	81	0
+	.	107	26
+	+	107	26
 
 > ~/projects/bsr/NERD_tree_2
-	"	13	0
+	"	4	0
+	.	1	0
+	+	1	0
+
+> ~/projects/bsr/NERD_tree_3
+	"	19	8
 	.	1	0
 	+	1	0
 	+	1	0
 	+	1	0
 	+	1	0
 
-> ~/projects/bsr/bsr_code/BSR/grouping/example.m
-	"	1	0
+> ~/projects/bsr/bsr_code/BSR/grouping/lib/fit_contour.m
+	"	15	0
 
-> ~/projects/UCMMPI-Spectra/NERD_tree_1
-	"	12	2
+> ~/projects/bsr/NERD_tree_4
+	"	46	10
 	.	1	0
 	+	1	0
 	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
-	"	520	11
-	.	504	0
-	+	504	0
-
-> ~/projects/UCMMPI-Spectra/src/watershed.cpp
-	"	85	0
 
 > ~/projects/UCMMPI-Spectra/src/UCMCPP.cpp
-	"	687	103
+	"	456	2
 	^	687	104
 	.	687	103
 	+	26	17
@@ -313,8 +976,29 @@ $steady_clock
 	+	688	0
 	+	687	103
 
-> ~/projects/ucmmpi_mod/src/UCMCPP.cpp
-	"	359	12
+> ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
+	"	46	1
+
+> ~/projects/UCMMPI-Spectra/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/projects/bsr/bsr_code/BSR/grouping/example.m
+	"	1	0
+
+> ~/projects/UCMMPI-Spectra/src/contours2ucm.cpp
+	"	520	11
+	.	504	0
+	+	504	0
+
+> ~/projects/UCMMPI-Spectra/src/watershed.cpp
+	"	85	0
 
 > ~/.tmuxrc
 	"	1	0
@@ -423,13 +1107,6 @@ $steady_clock
 	.	58	166
 	+	58	166
 
-> ~/.bash_profile
-	"	11	56
-	^	11	57
-	.	12	0
-	+	53	0
-	+	12	0
-
 > ~/.project
 	"	1	0
 
@@ -438,6 +1115,3 @@ $steady_clock
 	.	1	0
 	+	1	0
 	+	1	0
-
-> ~/projects/UCMMPI-Spectra/src/UCMgenerator.cpp
-	"	28	20
