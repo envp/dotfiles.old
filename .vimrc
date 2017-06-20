@@ -68,7 +68,7 @@ set noswapfile
 set background=dark
 set t_Co=16 " added for chromeos crosh chroot ubuntu
 
-colorscheme wombat256
+colorscheme wombat256mod
 
 "" quiet pls
 set visualbell t_vb=
