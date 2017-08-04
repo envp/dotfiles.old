@@ -35,7 +35,9 @@ let mapleader = ","
 :nnoremap <leader>c dd0
 
 "" Do not attempt to connect to the X server. We are CLI only
-set clipboard=exclude:.*
+if !has('nvim')
+    set clipboard=exclude:.*
+endif
 
 set lazyredraw
 set wildmenu
@@ -51,9 +53,9 @@ set foldnestmax=10
 set foldmethod=indent
 
 "" Navigation
-set mouse=a 
+set mouse=a
 
-" Search 
+" Search
 set ic
 set hlsearch
 set incsearch
@@ -66,9 +68,13 @@ set laststatus=2
 set number
 set noswapfile
 set background=dark
-set t_Co=16 " added for chromeos crosh chroot ubuntu
+set t_Co=256 " added for chromeos crosh chroot ubuntu
 
-colorscheme wombat256mod
+colorscheme onedark
+let g:airline_theme='onedark'
+
+" Get rid of the annoying warning
+let g:gitgutter_max_signs=9999
 
 "" quiet pls
 set visualbell t_vb=
@@ -80,7 +86,6 @@ set shiftwidth=4
 set softtabstop=4
 set colorcolumn=120
 highlight ColorColumn ctermbg=darkgray
-nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 "" Filetype detection for C/C++
 augroup project
@@ -126,3 +131,20 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+"" Shortcuts
+" F4 will toggle spell check
+map <F4> :setlocal spell!<CR>
+
+" F5 will remove all trailing whitespaces
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" F6 will toggle relative line numbers
+map <F6> :set rnu!<CR>
+
+"" Show trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()

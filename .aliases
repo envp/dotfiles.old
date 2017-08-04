@@ -16,6 +16,7 @@ alias dt="cd ~/Desktop"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias nvim="nvim.appimage"
 
 # Special command for activating venv
 alias p="cd ~/projects && source bin/activate && source ~/.bash_prompt"

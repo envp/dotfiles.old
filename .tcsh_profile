@@ -12,3 +12,7 @@ set prompt="${green}%n${magenta}@%m${cyan}[%~]${end}: "
 
 # Clean up after ourselves...
 unset red green yellow blue magenta cyan yellow white end
+
+# Add current user's bin dir to path
+set path =($path $HOME/bin)
+alias nvim nvim.appimage
