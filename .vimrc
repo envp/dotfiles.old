@@ -1,6 +1,8 @@
 set exrc
 set secure
 
+set t_Co=256
+
 "" Add plugins using vimplug
 call plug#begin('~/.vim/vimplug')
     Plug 'vim-airline/vim-airline'
@@ -15,14 +17,12 @@ call plug#begin('~/.vim/vimplug')
     Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-
 "" Generic settings
 " Enable syntax processing and highlighting respectively
 syntax on
 syntax enable
 
 filetype plugin indent on
-
 
 "" Leader key is <comma>
 let mapleader = ","
@@ -41,6 +41,11 @@ endif
 
 set lazyredraw
 set wildmenu
+
+"" Neovim settings
+if has("nvim")
+    tnoremap <Esc> <C-\><C-n>
+endif
 
 "" Code settings
 " Folding enabled
@@ -67,8 +72,6 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 set laststatus=2
 set number
 set noswapfile
-set background=dark
-set t_Co=256 " added for chromeos crosh chroot ubuntu
 
 colorscheme onedark
 let g:airline_theme='onedark'
@@ -85,7 +88,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set colorcolumn=120
-highlight ColorColumn ctermbg=darkgray
+highlight ColorColumn ctermbg=darkgrey
 
 "" Filetype detection for C/C++
 augroup project
@@ -109,6 +112,12 @@ let g:airline#extensions#tabline#enabled = 1
 "" Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+"" Show indent guides - vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = &shiftwidth / 2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
 
 "" Tabbed editing
 " Allow buffers to be hidden if you've modified a buffer.
