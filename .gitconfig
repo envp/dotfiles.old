@@ -7,6 +7,12 @@
     s = status -s -uno
     st = status -uno
 
+    # Show only untracked files and clear them
+    unt = ls-files --others --exclude-standard
+
+    # Clear untracked files
+    clu = !"echo $(git ls-files --others --exclude-standard | xargs rm -v | wc -l) deleted"
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
