@@ -1,8 +1,6 @@
 set exrc
 set secure
 
-set t_Co=256
-
 "" Add plugins using vimplug
 call plug#begin('~/.vim/vimplug')
     Plug 'vim-airline/vim-airline'
@@ -15,6 +13,9 @@ call plug#begin('~/.vim/vimplug')
     Plug 'vim-syntastic/syntastic'
     Plug 'craigemery/vim-autotag'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'rakr/vim-one'
+    Plug 'slashmili/alchemist.vim'
+    Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 "" Generic settings
@@ -73,8 +74,20 @@ set laststatus=2
 set number
 set noswapfile
 
-colorscheme onedark
-let g:airline_theme='onedark'
+set t_Co=256
+if(empty($TMUX))
+    if(has("nvim"))
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+
+    if(has("termguicolors"))
+        set termguicolors
+    endif
+endif
+
+" colorscheme one-dark
+set background=dark
+let g:airline_theme='base16_3024'
 
 " Get rid of the annoying warning
 let g:gitgutter_max_signs=9999

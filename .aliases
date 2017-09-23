@@ -1,22 +1,32 @@
 #!/usr/bin/env bash
 
+# Clear everything
+unalias -a
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias cls=clear
+
 alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
+D_DRIVE_HOME=/mnt/d/theyenaman
+C_DRIVE_HOME=/mnt/c/Users/theye
+alias d="cd $D_DRIVE_HOME/Dropbox"
+alias dl="cd $C_DRIVE_HOME/Downloads"
+alias dt="cd $C_DRIVE_HOME/Desktop"
 alias g="git"
 alias h="history"
-alias j="jobs"
-alias nvim="nvim.appimage"
+
+# Alias to nvim.appimage if nvim isn't already installed
+if hash nvim.appimage 2>/dev/null; then
+    alias nvim="nvim.appimage"
+fi
 
 # Special command for activating venv
 alias p="cd ~/projects && source bin/activate && source ~/.bash_prompt"
