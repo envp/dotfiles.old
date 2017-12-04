@@ -52,3 +52,7 @@ if [ -f "$HOME/bin/virtualenv.py" ]; then
     export PATH="$PATH:$HOME/bin/virtualenv.py"
     python3 -m venv --without-pip ~/projects
 fi;
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+source ~/.profile

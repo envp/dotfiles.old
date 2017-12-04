@@ -96,7 +96,7 @@ PS1+="\[${white}\]:";           # :
 PS1+="\[${cyan}\]\w";           # working directory full path
 PS1+="\$(prompt_git \"\[${white}\] (\[${violet}\]\" \"\[${white}\])\")"; # Git repository details
 # PS1+="\n";
-PS1+="\[${white}\] \$ \[${reset}\]"; # `λ` (and reset color)
+PS1+="\[${white}\] λ \[${reset}\]"; # `λ` (and reset color)
 export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";

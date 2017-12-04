@@ -7,14 +7,20 @@ function backup-dotfiles() {
     done
 }
 
+# Toggle to a shorter PS1 when I don't need the fullprompt
+function toggle_prompt() {
+    if  [ -z ${ALT_PS1+x} ]; then
+        echo Initializing ALT_PS1
+        export ALT_PS1="λ "
+    fi
+    temp=$PS1
+    export PS1=$ALT_PS1
+    export ALT_PS1=$temp
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
-}
-
-# Change working directory to the top-most Finder window location
-function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression

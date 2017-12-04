@@ -85,9 +85,8 @@ if(empty($TMUX))
     endif
 endif
 
-" colorscheme one-dark
+colorscheme default
 set background=dark
-let g:airline_theme='base16_3024'
 
 " Get rid of the annoying warning
 let g:gitgutter_max_signs=9999
