@@ -3,18 +3,5 @@
 # Only autocomplete directories
 complete -d cd
 
-# For GPB-GPU
-if [ -d "~/lib/acml5.3.1/ifort64/lib" ]; then
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/acml5.3.1/ifort64/lib
-fi
-
-# Fix bash for windows directory color defaults  being awful
-LS_COLORS="ow=01;36;40" && export LS_COLORS
-
-bind -f ~/.inputrc
-
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-source $HOME/.kiex/elixirs/elixir-master.env

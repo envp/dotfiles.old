@@ -1,27 +1,41 @@
 set exrc
 set secure
+set nocompatible
 
 "" Add plugins using vimplug
 call plug#begin('~/.vim/vimplug')
+    " Provide info etc
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    " Navigation
     Plug 'scrooloose/nerdtree'
-    Plug 'majutsushi/tagbar'
-    Plug 'scrooloose/nerdcommenter'
+    " Source control
     Plug 'airblade/vim-gitgutter'
-    Plug 'octol/vim-cpp-enhanced-highlight'
+    " Syntax highlight and indent guides
     Plug 'vim-syntastic/syntastic'
-    Plug 'craigemery/vim-autotag'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'rakr/vim-one'
+
+    "" Language autocompletion support
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    end
+    " Elixir
     Plug 'slashmili/alchemist.vim'
-    Plug 'elixir-editors/vim-elixir'
+    " C++/C
+    Plug 'zchee/deoplete-clang'
+    " ALL THE COLORS
+    Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 "" Generic settings
 " Enable syntax processing and highlighting respectively
-syntax on
-syntax enable
+if !exists('g:syntax_on')
+    syntax enable
+endif
 
 filetype plugin indent on
 
@@ -42,6 +56,8 @@ endif
 
 set lazyredraw
 set wildmenu
+" set cursorline
+set autoread
 
 "" Neovim settings
 if has("nvim")
@@ -86,7 +102,6 @@ if(empty($TMUX))
 endif
 
 colorscheme default
-set background=dark
 
 " Get rid of the annoying warning
 let g:gitgutter_max_signs=9999
@@ -101,7 +116,7 @@ set shiftwidth=4
 set softtabstop=4
 set colorcolumn=120
 highlight ColorColumn ctermbg=darkgrey
-highlight LineNr ctermfg=246
+
 
 "" Filetype detection for C/C++
 augroup project
@@ -110,8 +125,8 @@ augroup project
     autocmd BufRead,BufNewFile *.hpp, *.cc set filetype=cc.doxygen
 augroup END
 
-"" Add include dirs to path
-let &path.="src/include,/usr/include/AL,"
+"" Fuzzy file search
+set path+=**
 
 "" \+n toggles the nerdtree
 map <leader>n :NERDTreeToggle<CR>
@@ -129,8 +144,13 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=237
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
+
+"" Deoplete
+set completeopt-=preview
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+
 
 "" Tabbed editing
 " Allow buffers to be hidden if you've modified a buffer.
@@ -148,7 +168,7 @@ nmap <leader>bv :bprevious<CR>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bq :bdelete <BAR> :bp <CR>
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>

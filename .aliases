@@ -20,12 +20,17 @@ C_DRIVE_HOME=/mnt/c/Users/theye
 alias d="cd $D_DRIVE_HOME/Dropbox"
 alias dl="cd $C_DRIVE_HOME/Downloads"
 alias dt="cd $C_DRIVE_HOME/Desktop"
-alias g="git"
-alias h="history"
+alias df=pydf
+alias g=git
+alias h=history
+alias rm="rm -i -v"
 
-# Alias to nvim.appimage if nvim isn't already installed
-if hash nvim.appimage 2>/dev/null; then
-    alias nvim="nvim.appimage"
+# Alias to /usr/bin/nvim if found else
+# alias to: nvim.appimage if nvim isn't already installed
+if hash `which nvim` 2>/dev/null; then
+    alias vim=`which nvim`
+elif hash nvim.appimage 2>/dev/null; then
+    alias vim="nvim.appimage"
 fi
 
 # Special command for activating venv
