@@ -1,5 +1,0 @@
-set tabsize 4
-set tabstospaces
-
-# syntax "c" "\.(c(c|pp|u|xx)?|C)$" "\.(h(h|pp|xx)?|H)$" "\.ii?$"
-

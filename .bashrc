@@ -1,7 +1,8 @@
-[ -n "$PS1" ] && source ~/.bash_profile;
+if [ -f "$HOME/.bash_profile" ]; then
+    source ~/.bash_profile;
+fi;
 
-# Only autocomplete directories
+# cd only autocompletes directories
 complete -d cd
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export INPUTRC="$HOME/.inputrc"
