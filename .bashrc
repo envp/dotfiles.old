@@ -5,4 +5,3 @@ fi;
 # cd only autocompletes directories
 complete -d cd
 
-export INPUTRC="$HOME/.inputrc"

@@ -16,7 +16,6 @@ alias -- -="cd -"
 
 # Shortcuts
 D_DRIVE_HOME=/mnt/d/theyenaman
-C_DRIVE_HOME=/mnt/c/Users/theye
 alias d="cd $D_DRIVE_HOME/Dropbox"
 alias dl="cd $C_DRIVE_HOME/Downloads"
 alias dt="cd $C_DRIVE_HOME/Desktop"
@@ -24,6 +23,20 @@ alias df=pydf
 alias g=git
 alias h=history
 alias rm="rm -i -v"
+
+# Alias python3 to python if it is loaded into `$PATH`
+if [ -x "$(command -v python3)" ]; then
+    alias python=$(command -v python3)
+fi;
+
+# Add an alias for trizen if it exists
+if [ -x "$(command -v trizen)" ]; then
+    alias trz=$(command -v trizen)
+fi;
+# Add an alias for pacman if it exists
+if [ -x "$(command -v pacman)" ]; then
+    alias pcm=$(command -v pacman)
+fi;
 
 # Alias to /usr/bin/nvim if found else
 # alias to: nvim.appimage if nvim isn't already installed
@@ -71,13 +84,6 @@ alias week='date +%V'
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
-# Google Chrome
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
