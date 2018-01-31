@@ -1,5 +1,34 @@
 #!/usr/bin/env bash
 
+function glvpn-connect() {
+    # -u <username>
+    # -b Continue in background after startup
+    sudo openconnect -u vyenaman -b vpn.ufl.edu
+}
+
+function glvpn-disconnect() {
+    # Ensure that a openconnect process is running
+    oc_pid=$(pidof openconnect)
+    if [ -z $oc_pid ]; then
+        echo No process called \"openconnect\" found running \(via pidof\)
+    else
+        echo Found
+        ps -p$oc_pid
+        sudo kill -9 --verbose $oc_pid
+    fi
+}
+
+# Connect to the GatorLink VPN using OpenConnect
+function glvpn() {
+    # $1 is either '(c)' or '(dc)'
+    if [ $1 == "c" ]; then
+        glvpn-connect
+    elif [ $1 == "dc" ]; then
+        glvpn-disconnect
+    fi
+}
+
+
 # Compres a folder to tar.gz with progress
 function archive() {
     tar cf - $1/ -P --exclude .git --exclude "*.log" | pv -s $(du -sb $1/ | awk '{print $1}') | gzip > $1.tgz
@@ -17,7 +46,7 @@ function extract() {
 		do
 		  if [ -f "$n" ] ; then
 			  case "${n%,}" in
-				*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
+				*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
 							 tar xvf "$n"		;;
 				*.lzma)		 unlzma ./"$n"		;;
 				*.bz2)		 bunzip2 ./"$n"		;;

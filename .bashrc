@@ -5,3 +5,5 @@ fi;
 # cd only autocompletes directories
 complete -d cd
 
+# Expand commands
+bind Space:magic-space

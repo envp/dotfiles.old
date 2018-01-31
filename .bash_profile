@@ -67,3 +67,7 @@ fi;
 
 # Add python3 to path
 export PATH="$PATH:/usr/bin/python3"
+
+# Make sure systemd is aware of our current environment.
+# No PATH modifications after this line
+systemctl --user import-environment PATH

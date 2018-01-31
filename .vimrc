@@ -17,6 +17,7 @@ call plug#begin('~/.vim/vimplug')
 
     "" Language autocompletion support
     if has('nvim')
+        "" requires package: python-neovim
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     else
         Plug 'Shougo/deoplete.nvim'
@@ -101,7 +102,8 @@ if(empty($TMUX))
     endif
 endif
 
-colorscheme default
+colorscheme flatland
+set background=dark
 
 " Get rid of the annoying warning
 let g:gitgutter_max_signs=9999
@@ -115,7 +117,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set colorcolumn=120
-highlight ColorColumn ctermbg=darkgrey
+highlight ColorColumn ctermbg=red
 
 
 "" Filetype detection for C/C++
@@ -183,7 +185,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " F6 will toggle relative line numbers
 map <F6> :set rnu!<CR>
 
-"" Show trailing whitespaces
+"" *ALWAYS* Show trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/

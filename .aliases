@@ -21,8 +21,13 @@ alias dl="cd $C_DRIVE_HOME/Downloads"
 alias dt="cd $C_DRIVE_HOME/Desktop"
 alias df=pydf
 alias g=git
-alias h=history
+alias h="history | less"
 alias rm="rm -i -v"
+
+# Alias suspend to pm-suspend if loaded into $PATH
+if [ -x "$(command -v pm-suspend)" ]; then
+    alias suspend=$(command -v pm-suspend)
+fi;
 
 # Alias python3 to python if it is loaded into `$PATH`
 if [ -x "$(command -v python3)" ]; then
