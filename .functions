@@ -8,7 +8,7 @@ function glvpn-connect() {
 
 function glvpn-disconnect() {
     # Ensure that a openconnect process is running
-    oc_pid=$(pidof openconnect)
+    local oc_pid=$(pidof openconnect)
     if [ -z $oc_pid ]; then
         echo No process called \"openconnect\" found running \(via pidof\)
     else

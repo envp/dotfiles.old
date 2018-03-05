@@ -16,9 +16,10 @@ alias -- -="cd -"
 
 # Shortcuts
 D_DRIVE_HOME=/mnt/d/theyenaman
-alias d="cd $D_DRIVE_HOME/Dropbox"
-alias dl="cd $C_DRIVE_HOME/Downloads"
-alias dt="cd $C_DRIVE_HOME/Desktop"
+# C_DRIVE_HOME=/mnt/c/
+# alias d="cd $D_DRIVE_HOME/Dropbox"
+# alias dl="cd $C_DRIVE_HOME/Downloads"
+# alias dt="cd $C_DRIVE_HOME/Desktop"
 alias df=pydf
 alias g=git
 alias h="history | less"
@@ -46,7 +47,7 @@ fi;
 # Alias to /usr/bin/nvim if found else
 # alias to: nvim.appimage if nvim isn't already installed
 if hash `which nvim` 2>/dev/null; then
-    alias vim=`which nvim`
+    alias vim=`command -v nvim`
 elif hash nvim.appimage 2>/dev/null; then
     alias vim="nvim.appimage"
 fi
@@ -91,7 +92,7 @@ alias week='date +%V'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias externip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
