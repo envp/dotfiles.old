@@ -20,7 +20,7 @@ shopt -s histappend;
 shopt -s cdspell;
 
 # Enable some Bash 4 features when possible: * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux` * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
+for option in autocd globstar globasciiranges; do
     shopt -s "$option" 2> /dev/null;
 done;
 
@@ -44,7 +44,6 @@ complete -W "NSGlobalDomain" defaults;
 
 if [ -f "$HOME/bin/virtualenv.py" ]; then
     export PATH="$PATH:$HOME/bin/virtualenv.py"
-    python3 -m venv --without-pip ~/projects
 fi;
 
 # Fix windows directories being OTHER_WRITABLE (o+w) mode
@@ -71,3 +70,6 @@ export PATH="$PATH:/usr/bin/python3"
 # Make sure systemd is aware of our current environment.
 # No PATH modifications after this line
 systemctl --user import-environment PATH
+
+export PATH="$PATH:$HOME/.gem/ruby/2.5.0/bin"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

@@ -78,7 +78,7 @@ fi;
 
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]";        # working directory base name
-PS1+="\[${bold}\]\n";           # newline
+PS1+="\[${bold}\]";             # newline
 
 if [ -n "$VIRTUAL_ENV" ]; then  # virtualenv name
     PS1+="(${purple}`basename ${VIRTUAL_ENV}`${reset}) "
@@ -91,7 +91,6 @@ PS1+="\[${yellow}\]\h";         # host
 PS1+="\[${white}\]:";           # :
 PS1+="\[${cyan}\]\w";           # working directory full path
 PS1+="\$(prompt_git \"\[${white}\] (\[${violet}\]\" \"\[${white}\])\")"; # Git repository details
-# PS1+="\n";
 PS1+="\[${white}\] λ \[${reset}\]"; # `λ` (and reset color)
 export PS1;
 

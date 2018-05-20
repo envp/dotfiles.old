@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Arch has a bug for i7559, where my touchpad
+# stops working after a wake-up from sleep
+# This is a work-around: Turn it off, then on again.
+function fixtouch() {
+    gsettings set org.gnome.desktop.peripherals.touchpad send-events disabled;
+    gsettings set org.gnome.desktop.peripherals.touchpad send-events enabled;
+}
+
 function glvpn-connect() {
     # -u <username>
     # -b Continue in background after startup

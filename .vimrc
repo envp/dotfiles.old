@@ -24,6 +24,7 @@ call plug#begin('~/.vim/vimplug')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     end
+    Plug 'benmills/vimux'
     " Elixir
     Plug 'slashmili/alchemist.vim'
     " C++/C
@@ -102,7 +103,7 @@ if(empty($TMUX))
     endif
 endif
 
-colorscheme flatland
+colorscheme desert256
 set background=dark
 
 " Get rid of the annoying warning

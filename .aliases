@@ -3,6 +3,8 @@
 # Clear everything
 unalias -a
 
+alias drivesync='ruby /opt/drivesync/drivesync.rb'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias cls=clear
 
@@ -35,13 +37,9 @@ if [ -x "$(command -v python3)" ]; then
     alias python=$(command -v python3)
 fi;
 
-# Add an alias for trizen if it exists
-if [ -x "$(command -v trizen)" ]; then
-    alias trz=$(command -v trizen)
-fi;
 # Add an alias for pacman if it exists
 if [ -x "$(command -v pacman)" ]; then
-    alias pcm=$(command -v pacman)
+    alias pcm=$(command -v pacman);
 fi;
 
 # Alias to /usr/bin/nvim if found else
@@ -110,3 +108,5 @@ alias map="xargs -n1"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
+# Archlinux news
+alias syu='curl -s https://www.archlinux.org/feeds/news/ | xmllint --xpath //item/title\ \|\ //item/pubDate /dev/stdin | sed -r -e "s:<title>([^<]*?)</title><pubDate>([^<]*?)</pubDate>:\2\t\1\n:g"'
